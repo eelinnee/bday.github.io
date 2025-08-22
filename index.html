@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>𐙚🧸ྀ𝜗𝜚⋆₊˚</title>
 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -21,7 +23,7 @@
         }
 
         body {
-            height: 100vh;
+            min-height: 100vh;
             width: 100%;
             display: flex;
             justify-content: center;
@@ -29,7 +31,7 @@
             background: url(background.jpg);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f9f0f0;
-            /* Нежно-розовый фон */
+            padding: 20px;
         }
 
         .wrapper {
@@ -41,6 +43,7 @@
             align-items: center;
             z-index: 0;
             cursor: pointer;
+            max-width: 100%;
         }
 
         .prata-regular {
@@ -62,7 +65,6 @@
             width: 80%;
             height: 85%;
             background-color: #fffaf0;
-            /* Кремовый цвет бумаги */
             border-radius: 2px;
             z-index: 2;
             transition: all 0.5s ease-in-out;
@@ -91,20 +93,20 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 240, 245, 0.8);
-            /* Нежно-розовый прозрачный */
+            background-color: rgba(255, 240, 245, 0.95);
             z-index: 100;
             justify-content: center;
             align-items: center;
             overflow: auto;
+            padding: 20px;
         }
 
         .modal-content {
             background: #fffaf0;
-            padding: 40px;
+            padding: 30px;
             border-radius: 8px;
             max-width: 600px;
-            width: 90%;
+            width: 100%;
             max-height: 90vh;
             text-align: center;
             position: relative;
@@ -117,8 +119,20 @@
             box-shadow: 0 5px 15px rgba(167, 108, 110, 0.2);
         }
 
+        @media (max-width: 768px) {
+            .modal-content {
+                padding: 20px 15px;
+                margin: 0;
+                width: 95%;
+            }
+            
+            .modal {
+                padding: 10px;
+            }
+        }
+
         .modal-content::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
 
         .modal-content::-webkit-scrollbar-track {
@@ -137,11 +151,17 @@
 
         .close-btn {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 10px;
+            right: 10px;
             font-size: 24px;
             cursor: pointer;
             color: #a76c6e;
+            z-index: 101;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .modal-content h2 {
@@ -149,6 +169,13 @@
             margin-bottom: 20px;
             font-family: 'Cursive', 'MyCottageFont', cursive;
             font-size: 28px;
+        }
+
+        @media (max-width: 480px) {
+            .modal-content h2 {
+                font-size: 24px;
+                margin-bottom: 15px;
+            }
         }
 
         .modal-content p {
@@ -219,6 +246,13 @@
             transition: all 0.3s ease;
         }
 
+        @media (max-width: 480px) {
+            .ticket-btn {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+        }
+
         .ticket-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(167, 108, 110, 0.4);
@@ -234,6 +268,12 @@
             justify-content: center;
         }
 
+        @media (max-width: 480px) {
+            .photo-booth {
+                width: 300px;
+            }
+        }
+
         .photo-booth::before {
             content: '';
             position: absolute;
@@ -245,6 +285,12 @@
             background: #a76c6e;
             border-radius: 10px 10px 0 0;
             z-index: 10;
+        }
+
+        @media (max-width: 480px) {
+            .photo-booth::before {
+                width: 280px;
+            }
         }
 
         .ticket {
@@ -260,6 +306,13 @@
             overflow: hidden;
             transform-origin: top center;
             z-index: 5;
+        }
+
+        @media (max-width: 480px) {
+            .ticket {
+                width: 260px;
+                padding: 15px;
+            }
         }
 
         .ticket::before,
@@ -380,11 +433,28 @@
             left: 0;
             border-top: 100px solid transparent;
             border-right: 150px solid #f8d7da;
-            /* Нежно-розовый */
             border-bottom: 100px solid #f8d7da;
             border-left: 150px solid #f8d7da;
             z-index: 3;
             filter: drop-shadow(0 2px 4px rgba(167, 108, 110, 0.3));
+        }
+
+        @media (max-width: 480px) {
+            .envelope {
+                border-top: 80px solid transparent;
+                border-right: 120px solid #f8d7da;
+                border-bottom: 80px solid #f8d7da;
+                border-left: 120px solid #f8d7da;
+            }
+            
+            .wrapper {
+                height: 160px;
+                width: 240px;
+            }
+            
+            .letter p {
+                font-size: 24px;
+            }
         }
 
         .lid {
@@ -400,22 +470,40 @@
             transition: transform 0.25s linear;
         }
 
+        @media (max-width: 480px) {
+            .lid {
+                border-right: 120px solid transparent;
+                border-bottom: 80px solid transparent;
+                border-left: 120px solid transparent;
+            }
+        }
+
         /* lid when envelope open */
         .lid.one {
             border-top: 100px solid #f8c6c9;
-            /* Светло-розовый */
             transform: rotateX(0deg);
             z-index: 3;
             transition-delay: 0.75s;
         }
 
+        @media (max-width: 480px) {
+            .lid.one {
+                border-top: 80px solid #f8c6c9;
+            }
+        }
+
         /* lid when envelope closes */
         .lid.two {
             border-top: 100px solid #f4b6ba;
-            /* Чуть темнее розовый */
             transform: rotateX(0deg);
             z-index: 1;
             transition-delay: 0.5s;
+        }
+
+        @media (max-width: 480px) {
+            .lid.two {
+                border-top: 80px solid #f4b6ba;
+            }
         }
 
         /* lid open and close animation */
@@ -435,6 +523,12 @@
             transition-delay: 0.5s;
         }
 
+        @media (max-width: 480px) {
+            .wrapper:hover .letter {
+                transform: translateY(-80px);
+            }
+        }
+
         /* Стили для штампа */
         .pin {
             position: absolute;
@@ -448,6 +542,14 @@
             filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
             cursor: pointer;
             transition: transform 0.3s ease;
+        }
+
+        @media (max-width: 480px) {
+            .pin {
+                top: 45px;
+                width: 50px;
+                height: 50px;
+            }
         }
 
         .pin:hover {
@@ -465,6 +567,13 @@
             transform: rotate(-10deg);
         }
 
+        @media (max-width: 480px) {
+            .pin::before {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
         /* Иконка музыки на штампе */
         .music-icon {
             position: absolute;
@@ -472,6 +581,12 @@
             font-size: 20px;
             z-index: 7;
             opacity: 0.8;
+        }
+
+        @media (max-width: 480px) {
+            .music-icon {
+                font-size: 16px;
+            }
         }
 
         /* Кнопка прокрутки вниз к билету */
@@ -492,6 +607,15 @@
             z-index: 100;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
+        }
+
+        @media (max-width: 480px) {
+            .scroll-to-ticket {
+                width: 40px;
+                height: 40px;
+                bottom: 15px;
+                right: 15px;
+            }
         }
 
         .scroll-to-ticket:hover {
@@ -556,6 +680,7 @@
             display: flex;
             justify-content: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
         .countdown-item {
@@ -566,15 +691,117 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
+        @media (max-width: 480px) {
+            .countdown-item {
+                min-width: 50px;
+                padding: 8px;
+            }
+        }
+
         .countdown-number {
             font-size: 24px;
             font-weight: bold;
             color: #a76c6e;
         }
 
+        @media (max-width: 480px) {
+            .countdown-number {
+                font-size: 20px;
+            }
+        }
+
         .countdown-label {
             font-size: 12px;
             color: #5a4a4a;
+        }
+
+        @media (max-width: 480px) {
+            .countdown-label {
+                font-size: 10px;
+            }
+        }
+        
+        /* Улучшения для мобильных устройств */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .address-info {
+                padding: 12px;
+            }
+            
+            .address-info p {
+                font-size: 14px;
+            }
+            
+            .modal-content p {
+                font-size: 15px;
+            }
+            
+            .map-container iframe {
+                height: 250px;
+            }
+            
+            .ticket-title {
+                font-size: 22px;
+            }
+            
+            .ticket-details {
+                font-size: 13px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .countdown {
+                gap: 5px;
+            }
+            
+            .countdown-item {
+                min-width: 45px;
+            }
+            
+            .map-container iframe {
+                height: 200px;
+            }
+            
+            .modal-content h2 {
+                font-size: 22px;
+            }
+            
+            img[width="80%"] {
+                width: 90% !important;
+            }
+            
+            p[style*="font-size: xx-large"] {
+                font-size: x-large !important;
+            }
+            
+            p[style*="font-size:x-large"] {
+                font-size: large !important;
+            }
+        }
+        
+        /* Улучшение для тач-устройств */
+        @media (hover: none) {
+            .wrapper:hover .lid.one,
+            .wrapper:hover .lid.two,
+            .wrapper:hover .letter {
+                transform: none;
+            }
+            
+            .pin:hover,
+            .ticket-btn:hover,
+            .scroll-to-ticket:hover {
+                transform: none;
+            }
+        }
+        
+        /* Предотвращение масштабирования при вводе */
+        @media (max-width: 768px) {
+            input, select, textarea {
+                font-size: 16px !important;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -674,7 +901,7 @@
 
             <p style="font-family: 'MyCottageFont'; font-size: xx-large;">С нетерпением жду встречи!</p>
 
-            <img style="margin-bottom: 0;" width=80% src="minime.png">
+            <img style="margin-bottom: 0;" width=80% src="minime.png" alt="Мини-я">
             <p style="margin-top: 20px; font-family: 'MyCottageFont'; font-size:x-large;">С любовью, ваша Эля </p>
 
         </div>
@@ -707,7 +934,9 @@
                     soundWaves = null;
                 }
             } else {
-                music.play();
+                music.play().catch(error => {
+                    console.log('Автовоспроизведение заблокировано. Для прослушивания музыки нажмите на значок музыки.');
+                });
                 pinMusicIcon.classList.remove('fa-music');
                 pinMusicIcon.classList.add('fa-volume-up');
 
@@ -723,6 +952,7 @@
 
         function openModal() {
             document.getElementById('congratulationModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
             // Показываем кнопку прокрутки при открытии модального окна
             document.querySelector('.scroll-to-ticket').style.display = 'flex';
             // Запускаем отсчет времени при открытии модального окна
@@ -731,6 +961,7 @@
 
         function closeModal() {
             document.getElementById('congratulationModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
             // Скрываем кнопку прокрутки при закрытии модального окна
             document.querySelector('.scroll-to-ticket').style.display = 'none';
         }
@@ -799,7 +1030,7 @@
             // Запускаем хлопушки
             createConfetti();
 
-            // Проигрываем звук хлопушки (можно добавить аудио файл)
+            // Проигрываем звук хлопушки
             const popSound = new Audio('pop.mp3');
             popSound.play().catch(e => console.log('Аудио не может быть воспроизведено'));
 
@@ -815,6 +1046,13 @@
                 closeModal();
             }
         }
+
+        // Закрытие модального окна по клавише Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
 
         // Плавная прокрутка для всех внутренних ссылок
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -890,6 +1128,16 @@
             // Запускаем отсчет
             updateCountdown();
         }
+        
+        // Предотвращение масштабирования на мобильных устройствах при двойном тапе
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
     </script>
 </body>
 
