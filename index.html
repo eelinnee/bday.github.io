@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>𐙚🧸ྀ𝜗𝜚⋆₊˚</title>
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url(background.jpg);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f0f0;
+            /* Нежно-розовый фон */
+        }
+
+        .wrapper {
+            height: 200px;
+            width: 300px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 0;
+            cursor: pointer;
+        }
+
+        .prata-regular {
+            font-family: "Prata", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'MyCottageFont';
+            src: url('KosolapaScript-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        .letter {
+            position: absolute;
+            width: 80%;
+            height: 85%;
+            background-color: #fffaf0;
+            /* Кремовый цвет бумаги */
+            border-radius: 2px;
+            z-index: 2;
+            transition: all 0.5s ease-in-out;
+            transform: translateY(0);
+            padding: 20px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #f8d7da;
+        }
+
+        .letter p {
+            font-size: 30px;
+            color: #a76c6e;
+            transition: all 0.3s ease;
+            font-family: 'Cursive', 'MyCottageFont', cursive;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 240, 245, 0.8);
+            /* Нежно-розовый прозрачный */
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+        }
+
+        .modal-content {
+            background: #fffaf0;
+            padding: 40px;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            text-align: center;
+            position: relative;
+            animation: modalFadeIn 0.5s;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: #d4a5a7 #f8e8e8;
+            border: 1px solid #f8d7da;
+            box-shadow: 0 5px 15px rgba(167, 108, 110, 0.2);
+        }
+
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: #f8e8e8;
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: #d4a5a7;
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: #c89597;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #a76c6e;
+        }
+
+        .modal-content h2 {
+            color: #a76c6e;
+            margin-bottom: 20px;
+            font-family: 'Cursive', 'MyCottageFont', cursive;
+            font-size: 28px;
+        }
+
+        .modal-content p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: #5a4a4a;
+            font-size: 16px;
+        }
+
+        .congratulation-text {
+            margin-bottom: 30px;
+            font-family: 'Prata';
+            text-align: left;
+        }
+
+        .address-info {
+            background-color: #f8e8e8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #d4a5a7;
+            border-right: 4px solid #d4a5a7;
+        }
+
+        .address-info p {
+            margin: 5px 0;
+            font-weight: bold;
+        }
+
+        .map-container {
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+        }
+
+        .note {
+            font-style: italic;
+            color: #a76c6e;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f0f0;
+            border-radius: 5px;
+        }
+
+        .ticket-btn-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .ticket-btn {
+            background: linear-gradient(145deg, #d4a5a7, #f8d7da);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'MyCottageFont', cursive;
+            box-shadow: 0 4px 15px rgba(167, 108, 110, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .ticket-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(167, 108, 110, 0.4);
+        }
+
+        .photo-booth {
+            position: relative;
+            width: 340px;
+            height: 0;
+            margin: 30px auto;
+            overflow: visible;
+            display: flex;
+            justify-content: center;
+        }
+
+        .photo-booth::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 320px;
+            height: 20px;
+            background: #a76c6e;
+            border-radius: 10px 10px 0 0;
+            z-index: 10;
+        }
+
+        .ticket {
+            display: none;
+            background: white;
+            padding: 20px;
+            margin: 0 auto;
+            border: 2px dashed #d4a5a7;
+            border-radius: 10px;
+            width: 300px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transform-origin: top center;
+            z-index: 5;
+        }
+
+        .ticket::before,
+        .ticket::after {
+            content: "•";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #d4a5a7;
+            font-size: 24px;
+        }
+
+        .ticket::before {
+            left: -10px;
+        }
+
+        .ticket::after {
+            right: -10px;
+        }
+
+        .ticket-content {
+            text-align: center;
+        }
+
+        .ticket-title {
+            font-family: 'MyCottageFont', cursive;
+            color: #a76c6e;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .ticket-details {
+            font-size: 14px;
+            color: #5a4a4a;
+            line-height: 1.6;
+        }
+
+        /* Анимация выхода билета из фотобудки */
+        @keyframes printTicket {
+            0% {
+                transform: translateY(-100%) scale(0.9);
+                opacity: 0;
+            }
+
+            30% {
+                transform: translateY(-70%) scale(0.95);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Эффект печати текста */
+        .printing-text {
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 auto;
+            opacity: 0;
+            animation: typing 2s steps(40, end) forwards;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+                opacity: 1;
+            }
+
+            to {
+                width: 100%;
+                opacity: 1;
+            }
+        }
+
+        /* Стили для хлопушек */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f8d7da;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Конверт нежно-розового цвета */
+        .envelope {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            border-top: 100px solid transparent;
+            border-right: 150px solid #f8d7da;
+            /* Нежно-розовый */
+            border-bottom: 100px solid #f8d7da;
+            border-left: 150px solid #f8d7da;
+            z-index: 3;
+            filter: drop-shadow(0 2px 4px rgba(167, 108, 110, 0.3));
+        }
+
+        .lid {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            border-right: 150px solid transparent;
+            border-bottom: 100px solid transparent;
+            border-left: 150px solid transparent;
+            transform-origin: top;
+            transition: transform 0.25s linear;
+        }
+
+        /* lid when envelope open */
+        .lid.one {
+            border-top: 100px solid #f8c6c9;
+            /* Светло-розовый */
+            transform: rotateX(0deg);
+            z-index: 3;
+            transition-delay: 0.75s;
+        }
+
+        /* lid when envelope closes */
+        .lid.two {
+            border-top: 100px solid #f4b6ba;
+            /* Чуть темнее розовый */
+            transform: rotateX(0deg);
+            z-index: 1;
+            transition-delay: 0.5s;
+        }
+
+        /* lid open and close animation */
+        .wrapper:hover .lid.one {
+            transform: rotateX(90deg);
+            transition-delay: 0s;
+        }
+
+        .wrapper:hover .lid.two {
+            transform: rotateX(180deg);
+            transition-delay: 0.25s;
+        }
+
+        /* letter up and down animation */
+        .wrapper:hover .letter {
+            transform: translateY(-100px);
+            transition-delay: 0.5s;
+        }
+
+        /* Стили для штампа */
+        .pin {
+            position: absolute;
+            top: 55px;
+            z-index: 6;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .pin:hover {
+            transform: scale(1.1);
+        }
+
+        .pin::before {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-image: url(letterpin.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: rotate(-10deg);
+        }
+
+        /* Иконка музыки на штампе */
+        .music-icon {
+            position: absolute;
+            color: #a76c6e;
+            font-size: 20px;
+            z-index: 7;
+            opacity: 0.8;
+        }
+
+        /* Кнопка прокрутки вниз к билету */
+        .scroll-to-ticket {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(167, 108, 110, 0.8);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .scroll-to-ticket:hover {
+            background-color: rgba(167, 108, 110, 1);
+            transform: scale(1.1);
+        }
+
+        /* Анимация звуковых волн */
+        .sound-waves {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 2px solid #f8d7da;
+            animation: soundWave 1.5s infinite;
+            opacity: 0;
+            z-index: 5;
+        }
+
+        @keyframes soundWave {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Стили для плавной прокрутки с задержкой */
+        .t-records {
+            opacity: 0;
+        }
+
+        .t-records_animated {
+            transition: opacity ease-in-out 0.2s;
+        }
+
+        .t-records.t-records_visible {
+            opacity: 1;
+        }
+
+        /* Стили для обратного отсчета */
+        .countdown-container {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8e8e8;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .countdown-title {
+            font-family: 'Prata', serif;
+            color: #a76c6e;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .countdown-item {
+            background-color: #fffaf0;
+            padding: 10px;
+            border-radius: 5px;
+            min-width: 60px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .countdown-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #a76c6e;
+        }
+
+        .countdown-label {
+            font-size: 12px;
+            color: #5a4a4a;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="lid one"></div>
+        <div class="pin" onclick="toggleMusic(event)">
+            <i id="pinMusicIcon" class="music-icon fas fa-music"></i>
+        </div>
+        <div class="lid two"></div>
+        <div class="envelope"></div>
+        <div class="letter" onclick="openModal()">
+            <p>приглашение</p>
+        </div>
+    </div>
+
+    <!-- Кнопка прокрутки к билету -->
+    <div class="scroll-to-ticket" onclick="scrollToTicket()">
+        <i class="fas fa-ticket-alt"></i>
+    </div>
+
+    <!-- Модальное окно с приглашением -->
+    <div id="congratulationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Уважаемый гость!</h2>
+
+            <div class="congratulation-text">
+                <p>Совсем скоро уже <b>26 августа</b>, и я приглашаю <b>тебя</b> разделить этот замечательный день
+                    вместе со мной!</p>
+
+                <!-- Контейнер для обратного отсчета -->
+                <div class="countdown-container">
+                    <div class="countdown-title">До праздника осталось:</div>
+                    <div class="countdown">
+                        <div class="countdown-item">
+                            <div id="days" class="countdown-number">00</div>
+                            <div class="countdown-label">дней</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div id="hours" class="countdown-number">00</div>
+                            <div class="countdown-label">часов</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div id="minutes" class="countdown-number">00</div>
+                            <div class="countdown-label">минут</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div id="seconds" class="countdown-number">00</div>
+                            <div class="countdown-label">секунд</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="address-info">
+                    <p>📅 <strong>Дата:</strong> 26 августа</p>
+                    <p>📍 <strong>Адрес:</strong> ул. Шекснинская, д. 46, 3 подъезд, кв. 87</p>
+                    <p>⏰ <strong>Время:</strong> 15:00</p>
+                </div>
+
+                <p><i>Убедительная просьба не забыть хорошее настроение и желание повеселиться!</i></p>
+
+                <div style="margin-bottom: 40px;" class="map-container">
+                    <iframe
+                        src="https://yandex.ru/map-widget/v1/?ll=44.503213%2C48.762597&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1NzgxOTk2MBJZ0KDQvtGB0YHQuNGPLCDQktC-0LvQs9C-0LPRgNCw0LQsINCo0LXQutGB0L3QuNC90YHQutCw0Y8g0YPQu9C40YbQsCwgNDYsINC_0L7QtNGK0LXQt9C0IDMiCg3dAzJCFR0NQ0Iwo6T88As%2C&z=18.6"
+                        frameborder="0" allowfullscreen="true">
+                    </iframe>
+                </div>
+
+                <!-- Кнопка для получения билета - размещена по центру -->
+                <div class="ticket-btn-container">
+                    <button class="ticket-btn" onclick="printTicket()">
+                        Распечатать билет на праздник
+                    </button>
+                </div>
+
+                <!-- Контейнер фотобудки с билетом -->
+                <div class="photo-booth">
+                    <!-- Билет -->
+                    <div id="ticket" class="ticket">
+                        <div class="ticket-content">
+                            <div></div>
+                            <div class="ticket-title printing-text">Билет</div>
+                            <div class="ticket-details">
+                                <p class="printing-text"></p>
+                                <p class="printing-text">📅 26/08/2025 </p>
+                                <p class="printing-text">⏰ 15:00 </p>
+                                <p class="printing-text">📍 ул. Шекснинская, д. 46, кв. 87 </p>
+                                <p class="printing-text"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p style="font-family: 'MyCottageFont'; font-size: xx-large;">С нетерпением жду встречи!</p>
+
+            <img style="margin-bottom: 0;" width=80% src="minime.png">
+            <p style="margin-top: 20px; font-family: 'MyCottageFont'; font-size:x-large;">С любовью, ваша Эля </p>
+
+        </div>
+    </div>
+
+    <!-- Аудио элемент -->
+    <audio id="backgroundMusic" loop>
+        <source src="Barbie-12-Dancing-Princesses-Theme-Audio-Barbie-in-the-12-Da.m4a" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио элемент.
+    </audio>
+
+    <script>
+        const music = document.getElementById('backgroundMusic');
+        const pinMusicIcon = document.getElementById('pinMusicIcon');
+        let isMusicPlaying = false;
+        let soundWaves = null;
+
+        function toggleMusic(event) {
+            // Останавливаем всплытие события, чтобы не открывалось модальное окно
+            event.stopPropagation();
+
+            if (isMusicPlaying) {
+                music.pause();
+                pinMusicIcon.classList.remove('fa-volume-up');
+                pinMusicIcon.classList.add('fa-music');
+
+                // Удаляем анимацию звуковых волн
+                if (soundWaves) {
+                    soundWaves.remove();
+                    soundWaves = null;
+                }
+            } else {
+                music.play();
+                pinMusicIcon.classList.remove('fa-music');
+                pinMusicIcon.classList.add('fa-volume-up');
+
+                // Создаем анимацию звуковых волн
+                if (!soundWaves) {
+                    soundWaves = document.createElement('div');
+                    soundWaves.className = 'sound-waves';
+                    document.querySelector('.pin').appendChild(soundWaves);
+                }
+            }
+            isMusicPlaying = !isMusicPlaying;
+        }
+
+        function openModal() {
+            document.getElementById('congratulationModal').style.display = 'flex';
+            // Показываем кнопку прокрутки при открытии модального окна
+            document.querySelector('.scroll-to-ticket').style.display = 'flex';
+            // Запускаем отсчет времени при открытии модального окна
+            startCountdown();
+        }
+
+        function closeModal() {
+            document.getElementById('congratulationModal').style.display = 'none';
+            // Скрываем кнопку прокрутки при закрытии модального окна
+            document.querySelector('.scroll-to-ticket').style.display = 'none';
+        }
+
+        // Функция плавной прокрутки к билету
+        function scrollToTicket() {
+            const ticket = document.getElementById('ticket');
+            if (ticket) {
+                ticket.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }
+        }
+
+        // Функция для создания хлопушек
+        function createConfetti() {
+            const colors = ['#f8d7da', '#d4a5a7', '#a76c6e', '#f8c6c9', '#f4b6ba'];
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animation = `confettiFall ${Math.random() * 3 + 2}s linear forwards`;
+                confetti.style.width = Math.random() * 15 + 5 + 'px';
+                confetti.style.height = Math.random() * 15 + 5 + 'px';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                document.body.appendChild(confetti);
+
+                // Удаляем конфетти после анимации
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+
+        // Функция для печати билета
+        function printTicket() {
+            const ticket = document.getElementById('ticket');
+            const ticketBtn = document.querySelector('.ticket-btn');
+            const photoBooth = document.querySelector('.photo-booth');
+
+            // Устанавливаем высоту контейнера фотобудки
+            photoBooth.style.height = '200px';
+
+            // Показываем билет с анимацией выхода из фотобудки
+            ticket.style.display = 'block';
+            ticket.style.animation = 'printTicket 1.5s forwards';
+
+            // Добавляем эффект печати для текста
+            const printingTexts = document.querySelectorAll('.printing-text');
+            printingTexts.forEach((text, index) => {
+                text.style.animationDelay = `${index * 0.5}s`;
+            });
+
+            // Плавная прокрутка к билету
+            setTimeout(() => {
+                scrollToTicket();
+            }, 500);
+
+            // Меняем кнопку
+            ticketBtn.textContent = 'Билет получен!';
+            ticketBtn.style.background = 'linear-gradient(145deg, #a76c6e, #d4a5a7)';
+            ticketBtn.disabled = true;
+
+            // Запускаем хлопушки
+            createConfetti();
+
+            // Проигрываем звук хлопушки (можно добавить аудио файл)
+            const popSound = new Audio('pop.mp3');
+            popSound.play().catch(e => console.log('Аудио не может быть воспроизведено'));
+
+            // Добавляем звук печатающего принтера
+            const printSound = new Audio('print-sound.mp3');
+            printSound.play().catch(e => console.log('Аудио печати не может быть воспроизведено'));
+        }
+
+        // Закрытие модального окна при клике вне его
+        window.onclick = function (event) {
+            const modal = document.getElementById('congratulationModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Плавная прокрутка для всех внутренних ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Функция для плавного появления элементов с задержкой
+        function t_setvisRecs() {
+            var alr = document.querySelectorAll('.t-records');
+            Array.prototype.forEach.call(alr, function (el) {
+                el.classList.add("t-records_animated");
+            });
+            setTimeout(function () {
+                Array.prototype.forEach.call(alr, function (el) {
+                    el.classList.add("t-records_visible");
+                });
+                sessionStorage.setItem("visited", "y");
+            }, 400);
+        }
+
+        // Инициализация плавного появления при загрузке DOM
+        document.addEventListener('DOMContentLoaded', t_setvisRecs);
+
+        // Функция обратного отсчета
+        function startCountdown() {
+            // Устанавливаем дату события (26 августа текущего года)
+            const eventDate = new Date(new Date().getFullYear(), 7, 26, 15, 0, 0); // Месяцы в JS: 0-январь, 7-август
+
+            // Если дата уже прошла в этом году, устанавливаем на следующий год
+            if (eventDate < new Date()) {
+                eventDate.setFullYear(eventDate.getFullYear() + 1);
+            }
+
+            function updateCountdown() {
+                const now = new Date();
+                const diff = eventDate - now;
+
+                // Если событие уже наступило
+                if (diff <= 0) {
+                    document.getElementById('days').textContent = '00';
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                    document.querySelector('.countdown-title').textContent = 'Праздник уже наступил!';
+                    return;
+                }
+
+                // Вычисляем дни, часы, минуты и секунды
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                // Обновляем значения на странице
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+
+                // Запускаем обновление каждую секунду
+                setTimeout(updateCountdown, 1000);
+            }
+
+            // Запускаем отсчет
+            updateCountdown();
+        }
+    </script>
+</body>
+
+</html>
