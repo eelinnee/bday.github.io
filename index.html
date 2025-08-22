@@ -35,15 +35,16 @@
         }
 
         .wrapper {
-            height: 200px;
-            width: 300px;
+            height: 250px; /* Увеличено */
+            width: 375px; /* Увеличено */
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 0;
             cursor: pointer;
-            max-width: 100%;
+            max-width: 90%; /* Увеличено */
+            margin: 0 auto;
         }
 
         .prata-regular {
@@ -62,28 +63,29 @@
 
         .letter {
             position: absolute;
-            width: 80%;
-            height: 85%;
+            width: 85%; /* Увеличено */
+            height: 90%; /* Увеличено */
             background-color: #fffaf0;
-            border-radius: 2px;
+            border-radius: 4px; /* Увеличено */
             z-index: 2;
             transition: all 0.5s ease-in-out;
             transform: translateY(0);
-            padding: 20px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            padding: 25px; /* Увеличено */
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.15); /* Увеличено */
             overflow: hidden;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid #f8d7da;
+            border: 2px solid #f8d7da; /* Увеличено */
         }
 
         .letter p {
-            font-size: 30px;
+            font-size: 36px; /* Увеличено */
             color: #a76c6e;
             transition: all 0.3s ease;
             font-family: 'Cursive', 'MyCottageFont', cursive;
+            text-align: center;
         }
 
         .modal {
@@ -93,21 +95,21 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 240, 245, 0.95);
+            background-color: rgba(255, 240, 245, 0.98); /* Более непрозрачный */
             z-index: 100;
             justify-content: center;
             align-items: center;
             overflow: auto;
-            padding: 20px;
+            padding: 15px;
         }
 
         .modal-content {
             background: #fffaf0;
-            padding: 30px;
-            border-radius: 8px;
-            max-width: 600px;
+            padding: 35px; /* Увеличено */
+            border-radius: 12px; /* Увеличено */
+            max-width: 700px; /* Увеличено */
             width: 100%;
-            max-height: 90vh;
+            max-height: 95vh; /* Увеличено */
             text-align: center;
             position: relative;
             animation: modalFadeIn 0.5s;
@@ -115,15 +117,15 @@
             scroll-behavior: smooth;
             scrollbar-width: thin;
             scrollbar-color: #d4a5a7 #f8e8e8;
-            border: 1px solid #f8d7da;
-            box-shadow: 0 5px 15px rgba(167, 108, 110, 0.2);
+            border: 2px solid #f8d7da; /* Увеличено */
+            box-shadow: 0 8px 25px rgba(167, 108, 110, 0.3); /* Увеличено */
         }
 
         @media (max-width: 768px) {
             .modal-content {
-                padding: 20px 15px;
+                padding: 25px 20px; /* Увеличено */
                 margin: 0;
-                width: 95%;
+                width: 98%; /* Увеличено */
             }
             
             .modal {
@@ -132,7 +134,7 @@
         }
 
         .modal-content::-webkit-scrollbar {
-            width: 6px;
+            width: 8px; /* Увеличено */
         }
 
         .modal-content::-webkit-scrollbar-track {
@@ -151,118 +153,122 @@
 
         .close-btn {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
+            top: 15px; /* Увеличено */
+            right: 15px; /* Увеличено */
+            font-size: 32px; /* Увеличено */
             cursor: pointer;
             color: #a76c6e;
             z-index: 101;
-            width: 30px;
-            height: 30px;
+            width: 40px; /* Увеличено */
+            height: 40px; /* Увеличено */
             display: flex;
             align-items: center;
             justify-content: center;
+            background: rgba(248, 215, 218, 0.3);
+            border-radius: 50%;
         }
 
         .modal-content h2 {
             color: #a76c6e;
-            margin-bottom: 20px;
+            margin-bottom: 25px; /* Увеличено */
             font-family: 'Cursive', 'MyCottageFont', cursive;
-            font-size: 28px;
+            font-size: 32px; /* Увеличено */
         }
 
         @media (max-width: 480px) {
             .modal-content h2 {
-                font-size: 24px;
-                margin-bottom: 15px;
+                font-size: 28px; /* Увеличено */
+                margin-bottom: 20px; /* Увеличено */
             }
         }
 
         .modal-content p {
-            margin-bottom: 15px;
-            line-height: 1.6;
+            margin-bottom: 18px; /* Увеличено */
+            line-height: 1.7; /* Увеличено */
             color: #5a4a4a;
-            font-size: 16px;
+            font-size: 18px; /* Увеличено */
         }
 
         .congratulation-text {
-            margin-bottom: 30px;
+            margin-bottom: 35px; /* Увеличено */
             font-family: 'Prata';
             text-align: left;
         }
 
         .address-info {
             background-color: #f8e8e8;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border-left: 4px solid #d4a5a7;
-            border-right: 4px solid #d4a5a7;
+            padding: 20px; /* Увеличено */
+            border-radius: 10px; /* Увеличено */
+            margin: 25px 0; /* Увеличено */
+            border-left: 5px solid #d4a5a7; /* Увеличено */
+            border-right: 5px solid #d4a5a7; /* Увеличено */
         }
 
         .address-info p {
-            margin: 5px 0;
+            margin: 8px 0; /* Увеличено */
             font-weight: bold;
+            font-size: 18px; /* Увеличено */
         }
 
         .map-container {
-            margin: 20px 0;
-            border-radius: 8px;
+            margin: 25px 0; /* Увеличено */
+            border-radius: 10px; /* Увеличено */
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Увеличено */
         }
 
         .map-container iframe {
             width: 100%;
-            height: 300px;
+            height: 350px; /* Увеличено */
             border: none;
         }
 
         .note {
             font-style: italic;
             color: #a76c6e;
-            margin-top: 20px;
-            padding: 10px;
+            margin-top: 25px; /* Увеличено */
+            padding: 15px; /* Увеличено */
             background-color: #f9f0f0;
-            border-radius: 5px;
+            border-radius: 8px; /* Увеличено */
+            font-size: 18px; /* Увеличено */
         }
 
         .ticket-btn-container {
             display: flex;
             justify-content: center;
-            margin: 20px 0;
+            margin: 25px 0; /* Увеличено */
         }
 
         .ticket-btn {
             background: linear-gradient(145deg, #d4a5a7, #f8d7da);
             color: white;
             border: none;
-            padding: 15px 30px;
-            font-size: 18px;
+            padding: 18px 35px; /* Увеличено */
+            font-size: 20px; /* Увеличено */
             border-radius: 50px;
             cursor: pointer;
             font-family: 'MyCottageFont', cursive;
-            box-shadow: 0 4px 15px rgba(167, 108, 110, 0.3);
+            box-shadow: 0 6px 18px rgba(167, 108, 110, 0.4); /* Увеличено */
             transition: all 0.3s ease;
         }
 
         @media (max-width: 480px) {
             .ticket-btn {
-                padding: 12px 25px;
-                font-size: 16px;
+                padding: 16px 30px; /* Увеличено */
+                font-size: 18px; /* Увеличено */
             }
         }
 
         .ticket-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(167, 108, 110, 0.4);
+            box-shadow: 0 8px 25px rgba(167, 108, 110, 0.5); /* Увеличено */
         }
 
         .photo-booth {
             position: relative;
-            width: 340px;
+            width: 380px; /* Увеличено */
             height: 0;
-            margin: 30px auto;
+            margin: 35px auto; /* Увеличено */
             overflow: visible;
             display: flex;
             justify-content: center;
@@ -270,7 +276,7 @@
 
         @media (max-width: 480px) {
             .photo-booth {
-                width: 300px;
+                width: 320px; /* Увеличено */
             }
         }
 
@@ -280,29 +286,29 @@
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 320px;
-            height: 20px;
+            width: 340px; /* Увеличено */
+            height: 25px; /* Увеличено */
             background: #a76c6e;
-            border-radius: 10px 10px 0 0;
+            border-radius: 12px 12px 0 0; /* Увеличено */
             z-index: 10;
         }
 
         @media (max-width: 480px) {
             .photo-booth::before {
-                width: 280px;
+                width: 300px; /* Увеличено */
             }
         }
 
         .ticket {
             display: none;
             background: white;
-            padding: 20px;
+            padding: 25px; /* Увеличено */
             margin: 0 auto;
-            border: 2px dashed #d4a5a7;
-            border-radius: 10px;
-            width: 300px;
+            border: 3px dashed #d4a5a7; /* Увеличено */
+            border-radius: 12px; /* Увеличено */
+            width: 340px; /* Увеличено */
             position: relative;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Увеличено */
             overflow: hidden;
             transform-origin: top center;
             z-index: 5;
@@ -310,8 +316,8 @@
 
         @media (max-width: 480px) {
             .ticket {
-                width: 260px;
-                padding: 15px;
+                width: 280px; /* Увеличено */
+                padding: 20px; /* Увеличено */
             }
         }
 
@@ -322,15 +328,15 @@
             top: 50%;
             transform: translateY(-50%);
             color: #d4a5a7;
-            font-size: 24px;
+            font-size: 28px; /* Увеличено */
         }
 
         .ticket::before {
-            left: -10px;
+            left: -12px; /* Увеличено */
         }
 
         .ticket::after {
-            right: -10px;
+            right: -12px; /* Увеличено */
         }
 
         .ticket-content {
@@ -340,14 +346,14 @@
         .ticket-title {
             font-family: 'MyCottageFont', cursive;
             color: #a76c6e;
-            font-size: 24px;
-            margin-bottom: 15px;
+            font-size: 28px; /* Увеличено */
+            margin-bottom: 20px; /* Увеличено */
         }
 
         .ticket-details {
-            font-size: 14px;
+            font-size: 16px; /* Увеличено */
             color: #5a4a4a;
-            line-height: 1.6;
+            line-height: 1.7; /* Увеличено */
         }
 
         /* Анимация выхода билета из фотобудки */
@@ -392,8 +398,8 @@
         /* Стили для хлопушек */
         .confetti {
             position: fixed;
-            width: 10px;
-            height: 10px;
+            width: 12px; /* Увеличено */
+            height: 12px; /* Увеличено */
             background-color: #f8d7da;
             opacity: 0;
             pointer-events: none;
@@ -431,29 +437,29 @@
             width: 100%;
             top: 0;
             left: 0;
-            border-top: 100px solid transparent;
-            border-right: 150px solid #f8d7da;
-            border-bottom: 100px solid #f8d7da;
-            border-left: 150px solid #f8d7da;
+            border-top: 125px solid transparent; /* Увеличено */
+            border-right: 187px solid #f8d7da; /* Увеличено */
+            border-bottom: 125px solid #f8d7da; /* Увеличено */
+            border-left: 187px solid #f8d7da; /* Увеличено */
             z-index: 3;
-            filter: drop-shadow(0 2px 4px rgba(167, 108, 110, 0.3));
+            filter: drop-shadow(0 3px 6px rgba(167, 108, 110, 0.4)); /* Увеличено */
         }
 
         @media (max-width: 480px) {
             .envelope {
-                border-top: 80px solid transparent;
-                border-right: 120px solid #f8d7da;
-                border-bottom: 80px solid #f8d7da;
-                border-left: 120px solid #f8d7da;
+                border-top: 100px solid transparent; /* Увеличено */
+                border-right: 150px solid #f8d7da; /* Увеличено */
+                border-bottom: 100px solid #f8d7da; /* Увеличено */
+                border-left: 150px solid #f8d7da; /* Увеличено */
             }
             
             .wrapper {
-                height: 160px;
-                width: 240px;
+                height: 200px; /* Увеличено */
+                width: 300px; /* Увеличено */
             }
             
             .letter p {
-                font-size: 24px;
+                font-size: 30px; /* Увеличено */
             }
         }
 
@@ -463,24 +469,24 @@
             width: 100%;
             top: 0;
             left: 0;
-            border-right: 150px solid transparent;
-            border-bottom: 100px solid transparent;
-            border-left: 150px solid transparent;
+            border-right: 187px solid transparent; /* Увеличено */
+            border-bottom: 125px solid transparent; /* Увеличено */
+            border-left: 187px solid transparent; /* Увеличено */
             transform-origin: top;
             transition: transform 0.25s linear;
         }
 
         @media (max-width: 480px) {
             .lid {
-                border-right: 120px solid transparent;
-                border-bottom: 80px solid transparent;
-                border-left: 120px solid transparent;
+                border-right: 150px solid transparent; /* Увеличено */
+                border-bottom: 100px solid transparent; /* Увеличено */
+                border-left: 150px solid transparent; /* Увеличено */
             }
         }
 
         /* lid when envelope open */
         .lid.one {
-            border-top: 100px solid #f8c6c9;
+            border-top: 125px solid #f8c6c9; /* Увеличено */
             transform: rotateX(0deg);
             z-index: 3;
             transition-delay: 0.75s;
@@ -488,13 +494,13 @@
 
         @media (max-width: 480px) {
             .lid.one {
-                border-top: 80px solid #f8c6c9;
+                border-top: 100px solid #f8c6c9; /* Увеличено */
             }
         }
 
         /* lid when envelope closes */
         .lid.two {
-            border-top: 100px solid #f4b6ba;
+            border-top: 125px solid #f4b6ba; /* Увеличено */
             transform: rotateX(0deg);
             z-index: 1;
             transition-delay: 0.5s;
@@ -502,7 +508,7 @@
 
         @media (max-width: 480px) {
             .lid.two {
-                border-top: 80px solid #f4b6ba;
+                border-top: 100px solid #f4b6ba; /* Увеличено */
             }
         }
 
@@ -519,36 +525,36 @@
 
         /* letter up and down animation */
         .wrapper:hover .letter {
-            transform: translateY(-100px);
+            transform: translateY(-125px); /* Увеличено */
             transition-delay: 0.5s;
         }
 
         @media (max-width: 480px) {
             .wrapper:hover .letter {
-                transform: translateY(-80px);
+                transform: translateY(-100px); /* Увеличено */
             }
         }
 
         /* Стили для штампа */
         .pin {
             position: absolute;
-            top: 55px;
+            top: 70px; /* Увеличено */
             z-index: 6;
-            width: 60px;
-            height: 60px;
+            width: 70px; /* Увеличено */
+            height: 70px; /* Увеличено */
             display: flex;
             justify-content: center;
             align-items: center;
-            filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+            filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.25)); /* Увеличено */
             cursor: pointer;
             transition: transform 0.3s ease;
         }
 
         @media (max-width: 480px) {
             .pin {
-                top: 45px;
-                width: 50px;
-                height: 50px;
+                top: 55px; /* Увеличено */
+                width: 60px; /* Увеличено */
+                height: 60px; /* Увеличено */
             }
         }
 
@@ -559,8 +565,8 @@
         .pin::before {
             content: "";
             position: absolute;
-            width: 50px;
-            height: 50px;
+            width: 60px; /* Увеличено */
+            height: 60px; /* Увеличено */
             background-image: url(letterpin.png);
             background-size: contain;
             background-repeat: no-repeat;
@@ -569,8 +575,8 @@
 
         @media (max-width: 480px) {
             .pin::before {
-                width: 40px;
-                height: 40px;
+                width: 50px; /* Увеличено */
+                height: 50px; /* Увеличено */
             }
         }
 
@@ -578,14 +584,14 @@
         .music-icon {
             position: absolute;
             color: #a76c6e;
-            font-size: 20px;
+            font-size: 24px; /* Увеличено */
             z-index: 7;
             opacity: 0.8;
         }
 
         @media (max-width: 480px) {
             .music-icon {
-                font-size: 16px;
+                font-size: 20px; /* Увеличено */
             }
         }
 
@@ -593,28 +599,28 @@
         .scroll-to-ticket {
             display: none;
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: rgba(167, 108, 110, 0.8);
+            bottom: 25px; /* Увеличено */
+            right: 25px; /* Увеличено */
+            background-color: rgba(167, 108, 110, 0.9); /* Более непрозрачный */
             color: white;
-            width: 50px;
-            height: 50px;
+            width: 60px; /* Увеличено */
+            height: 60px; /* Увеличено */
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             z-index: 100;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Увеличено */
             transition: all 0.3s ease;
         }
 
         @media (max-width: 480px) {
             .scroll-to-ticket {
-                width: 40px;
-                height: 40px;
-                bottom: 15px;
-                right: 15px;
+                width: 50px; /* Увеличено */
+                height: 50px; /* Увеличено */
+                bottom: 20px; /* Увеличено */
+                right: 20px; /* Увеличено */
             }
         }
 
@@ -626,10 +632,10 @@
         /* Анимация звуковых волн */
         .sound-waves {
             position: absolute;
-            width: 70px;
-            height: 70px;
+            width: 80px; /* Увеличено */
+            height: 80px; /* Увеличено */
             border-radius: 50%;
-            border: 2px solid #f8d7da;
+            border: 3px solid #f8d7da; /* Увеличено */
             animation: soundWave 1.5s infinite;
             opacity: 0;
             z-index: 5;
@@ -662,62 +668,62 @@
 
         /* Стили для обратного отсчета */
         .countdown-container {
-            margin: 20px 0;
-            padding: 15px;
+            margin: 25px 0; /* Увеличено */
+            padding: 20px; /* Увеличено */
             background-color: #f8e8e8;
-            border-radius: 8px;
+            border-radius: 10px; /* Увеличено */
             text-align: center;
         }
 
         .countdown-title {
             font-family: 'Prata', serif;
             color: #a76c6e;
-            margin-bottom: 10px;
-            font-size: 18px;
+            margin-bottom: 15px; /* Увеличено */
+            font-size: 22px; /* Увеличено */
         }
 
         .countdown {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 15px; /* Увеличено */
             flex-wrap: wrap;
         }
 
         .countdown-item {
             background-color: #fffaf0;
-            padding: 10px;
-            border-radius: 5px;
-            min-width: 60px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 15px; /* Увеличено */
+            border-radius: 8px; /* Увеличено */
+            min-width: 70px; /* Увеличено */
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); /* Увеличено */
         }
 
         @media (max-width: 480px) {
             .countdown-item {
-                min-width: 50px;
-                padding: 8px;
+                min-width: 60px; /* Увеличено */
+                padding: 12px; /* Увеличено */
             }
         }
 
         .countdown-number {
-            font-size: 24px;
+            font-size: 28px; /* Увеличено */
             font-weight: bold;
             color: #a76c6e;
         }
 
         @media (max-width: 480px) {
             .countdown-number {
-                font-size: 20px;
+                font-size: 24px; /* Увеличено */
             }
         }
 
         .countdown-label {
-            font-size: 12px;
+            font-size: 14px; /* Увеличено */
             color: #5a4a4a;
         }
 
         @media (max-width: 480px) {
             .countdown-label {
-                font-size: 10px;
+                font-size: 12px; /* Увеличено */
             }
         }
         
@@ -728,57 +734,57 @@
             }
             
             .address-info {
-                padding: 12px;
+                padding: 15px; /* Увеличено */
             }
             
             .address-info p {
-                font-size: 14px;
+                font-size: 16px; /* Увеличено */
             }
             
             .modal-content p {
-                font-size: 15px;
+                font-size: 16px; /* Увеличено */
             }
             
             .map-container iframe {
-                height: 250px;
+                height: 300px; /* Увеличено */
             }
             
             .ticket-title {
-                font-size: 22px;
+                font-size: 24px; /* Увеличено */
             }
             
             .ticket-details {
-                font-size: 13px;
+                font-size: 14px; /* Увеличено */
             }
         }
         
         @media (max-width: 480px) {
             .countdown {
-                gap: 5px;
+                gap: 8px; /* Увеличено */
             }
             
             .countdown-item {
-                min-width: 45px;
+                min-width: 55px; /* Увеличено */
             }
             
             .map-container iframe {
-                height: 200px;
+                height: 250px; /* Увеличено */
             }
             
             .modal-content h2 {
-                font-size: 22px;
+                font-size: 26px; /* Увеличено */
             }
             
             img[width="80%"] {
-                width: 90% !important;
+                width: 95% !important; /* Увеличено */
             }
             
             p[style*="font-size: xx-large"] {
-                font-size: x-large !important;
+                font-size: xx-large !important; /* Увеличено */
             }
             
             p[style*="font-size:x-large"] {
-                font-size: large !important;
+                font-size: x-large !important; /* Увеличено */
             }
         }
         
@@ -795,12 +801,43 @@
             .scroll-to-ticket:hover {
                 transform: none;
             }
+            
+            /* Добавляем анимацию при касании для мобильных */
+            .wrapper:active .lid.one {
+                transform: rotateX(90deg);
+            }
+            
+            .wrapper:active .lid.two {
+                transform: rotateX(180deg);
+            }
+            
+            .wrapper:active .letter {
+                transform: translateY(-125px);
+            }
+            
+            @media (max-width: 480px) {
+                .wrapper:active .letter {
+                    transform: translateY(-100px);
+                }
+            }
         }
         
         /* Предотвращение масштабирования при вводе */
         @media (max-width: 768px) {
             input, select, textarea {
                 font-size: 16px !important;
+            }
+        }
+        
+        /* Улучшение читаемости текста */
+        .modal-content {
+            font-size: 1.1em; /* Увеличено */
+        }
+        
+        /* Увеличение области клика для мобильных */
+        @media (max-width: 768px) {
+            .ticket-btn, .close-btn, .pin {
+                min-height: 44px; /* Минимальный рекомендуемый размер для касания */
             }
         }
     </style>
@@ -936,6 +973,7 @@
             } else {
                 music.play().catch(error => {
                     console.log('Автовоспроизведение заблокировано. Для прослушивания музыки нажмите на значок музыки.');
+                    alert('Для прослушивания музыки нажмите на значок музыки еще раз.');
                 });
                 pinMusicIcon.classList.remove('fa-music');
                 pinMusicIcon.classList.add('fa-volume-up');
@@ -998,14 +1036,14 @@
             }
         }
 
-        // Функция для печати билета
+        // Функция для печата билета
         function printTicket() {
             const ticket = document.getElementById('ticket');
             const ticketBtn = document.querySelector('.ticket-btn');
             const photoBooth = document.querySelector('.photo-booth');
 
             // Устанавливаем высоту контейнера фотобудки
-            photoBooth.style.height = '200px';
+            photoBooth.style.height = '220px'; // Увеличено
 
             // Показываем билет с анимацией выхода из фотобудки
             ticket.style.display = 'block';
@@ -1137,6 +1175,25 @@
                 event.preventDefault();
             }
             lastTouchEnd = now;
+        }, false);
+        
+        // Улучшение для мобильных: закрытие модального окна по свайпу
+        let touchStartY = 0;
+        document.addEventListener('touchstart', function(e) {
+            touchStartY = e.changedTouches[0].screenY;
+        }, false);
+        
+        document.addEventListener('touchmove', function(e) {
+            const modal = document.getElementById('congratulationModal');
+            if (modal.style.display === 'flex') {
+                const touchY = e.changedTouches[0].screenY;
+                const diff = touchY - touchStartY;
+                
+                // Если свайп вниз более 100px, закрываем модальное окно
+                if (diff > 100) {
+                    closeModal();
+                }
+            }
         }, false);
     </script>
 </body>
