@@ -341,8 +341,6 @@
 
         .ticket-content {
             text-align: center;
-            opacity: 0;
-            transition: opacity 0.5s ease;
         }
 
         .ticket-title {
@@ -528,7 +526,6 @@
         .wrapper.open .letter {
             transform: translateY(-125px);
             transition-delay: 0.5s;
-            cursor: pointer;
         }
 
         @media (max-width: 480px) {
@@ -824,7 +821,7 @@
 <body>
     <div class="wrapper" id="envelopeWrapper">
         <div class="lid one"></div>
-        <div class="pin" onclick="openModal()">
+        <div class="pin" onclick="toggleMusic(event)">
             <i id="pinMusicIcon" class="music-icon fas fa-music"></i>
         </div>
         <div class="lid two"></div>
@@ -935,11 +932,48 @@
         let soundWaves = null;
         let isEnvelopeOpen = false;
 
+        function toggleMusic(event) {
+            // Останавливаем всплытие события, чтобы не открывалось модальное окно
+            event.stopPropagation();
+
+            if (isMusicPlaying) {
+                music.pause();
+                pinMusicIcon.classList.remove('fa-volume-up');
+                pinMusicIcon.classList.add('fa-music');
+
+                // Удаляем анимацию звуковых волн
+                if (soundWaves) {
+                    soundWaves.remove();
+                    soundWaves = null;
+                }
+            } else {
+                music.play().catch(error => {
+                    console.log('Автовоспроизведение заблокировано. Для прослушивания музыки нажмите на значок музыки.');
+                    alert('Для прослушивания музыки нажмите на значок музыки еще раз.');
+                });
+                pinMusicIcon.classList.remove('fa-music');
+                pinMusicIcon.classList.add('fa-volume-up');
+
+                // Создаем анимацию звуковых волн
+                if (!soundWaves) {
+                    soundWaves = document.createElement('div');
+                    soundWaves.className = 'sound-waves';
+                    document.querySelector('.pin').appendChild(soundWaves);
+                }
+            }
+            isMusicPlaying = !isMusicPlaying;
+        }
+
         function openEnvelope() {
             // Открываем конверт только если он еще не открыт
             if (!isEnvelopeOpen) {
                 envelopeWrapper.classList.add('open');
                 isEnvelopeOpen = true;
+                
+                // Автоматически открываем модальное окно через 1 секунду
+                setTimeout(() => {
+                    openModal();
+                }, 1000);
             }
         }
 
@@ -1150,6 +1184,21 @@
                 }
             }
         }, false);
+        
+        // Открытие конверта при загрузке на мобильных устройствах
+        function checkMobileAndOpenEnvelope() {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                // Если это мобильное устройство, открываем конверт автоматически
+                setTimeout(() => {
+                    openEnvelope();
+                }, 1000);
+            }
+        }
+        
+        // Проверяем при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            checkMobileAndOpenEnvelope();
+        });
     </script>
 </body>
 
