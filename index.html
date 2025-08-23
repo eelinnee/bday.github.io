@@ -123,6 +123,72 @@
                 opacity: 1;
             }
         }
+        
+        /* Стили для подсказок */
+        .hint {
+            position: fixed;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 15px 20px;
+            box-shadow: 0 5px 25px rgba(167, 108, 110, 0.3);
+            z-index: 10002;
+            max-width: 250px;
+            font-family: 'Prata', serif;
+            color: #a76c6e;
+            font-size: 16px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+            pointer-events: none;
+        }
+        
+        .hint.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hint::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            transform: rotate(45deg);
+        }
+        
+        .hint-top::after {
+            bottom: -10px;
+            left: 50%;
+            margin-left: -10px;
+        }
+        
+        .hint-bottom::after {
+            top: -10px;
+            left: 50%;
+            margin-left: -10px;
+        }
+        
+        .hint-left::after {
+            right: -10px;
+            top: 50%;
+            margin-top: -10px;
+        }
+        
+        .hint-right::after {
+            left: -10px;
+            top: 50%;
+            margin-top: -10px;
+        }
+        
+        .hint-close {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            pointer-events: all;
+        }
     </style>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.00-beta3/css/all.min.css" media="print" onload="this.media='all'">
@@ -220,6 +286,9 @@
         </div>
     </div>
 
+    <!-- Контейнер для подсказок -->
+    <div id="hintContainer"></div>
+
     <audio id="backgroundMusic" loop preload="metadata">
         <source src="Barbie-12-Dancing-Princesses-Theme-Audio-Barbie-in-the-12-Da.m4a" type="audio/mp4">
         <source src="Barbie-12-Dancing-Princesses-Theme-Audio-Barbie-in-the-12-Da.mp3" type="audio/mpeg">
@@ -232,17 +301,114 @@
         const pinMusicIcon = document.getElementById('pinMusicIcon');
         const envelopeWrapper = document.getElementById('envelopeWrapper');
         const modal = document.getElementById('congratulationModal');
+        const hintContainer = document.getElementById('hintContainer');
         let isMusicPlaying = false;
         let soundWaves = null;
         let isEnvelopeOpen = false;
+        let hintTimers = [];
         
         // Устанавливаем громкость на половину для лучшего пользовательского опыта
         music.volume = 0.5;
+
+        // Функция для создания подсказок
+        function createHint(text, position, targetElement, placement = 'top', delay = 0) {
+            // Очищаем предыдущие подсказки
+            clearAllHints();
+            
+            const timer = setTimeout(() => {
+                const hint = document.createElement('div');
+                hint.className = `hint hint-${placement}`;
+                hint.innerHTML = `${text}<span class="hint-close" onclick="removeHint(this.parentElement)">&times;</span>`;
+                
+                hintContainer.appendChild(hint);
+                
+                // Позиционируем подсказку относительно целевого элемента
+                positionHint(hint, targetElement, placement);
+                
+                // Показываем подсказку с анимацией
+                setTimeout(() => {
+                    hint.classList.add('visible');
+                }, 100);
+                
+                // Сохраняем ID подсказки для последующего удаления
+                hint.dataset.hintId = `hint-${Date.now()}`;
+            }, delay);
+            
+            hintTimers.push(timer);
+            return timer;
+        }
+        
+        // Позиционирование подсказки
+        function positionHint(hint, targetElement, placement) {
+            const targetRect = targetElement.getBoundingClientRect();
+            const hintRect = hint.getBoundingClientRect();
+            
+            switch(placement) {
+                case 'top':
+                    hint.style.top = `${targetRect.top - hintRect.height - 15}px`;
+                    hint.style.left = `${targetRect.left + (targetRect.width - hintRect.width) / 2}px`;
+                    break;
+                case 'bottom':
+                    hint.style.top = `${targetRect.bottom + 15}px`;
+                    hint.style.left = `${targetRect.left + (targetRect.width - hintRect.width) / 2}px`;
+                    break;
+                case 'left':
+                    hint.style.top = `${targetRect.top + (targetRect.height - hintRect.height) / 2}px`;
+                    hint.style.left = `${targetRect.left - hintRect.width - 15}px`;
+                    break;
+                case 'right':
+                    hint.style.top = `${targetRect.top + (targetRect.height - hintRect.height) / 2}px`;
+                    hint.style.left = `${targetRect.right + 15}px`;
+                    break;
+            }
+        }
+        
+        // Удаление подсказки
+        function removeHint(hintElement) {
+            hintElement.classList.remove('visible');
+            setTimeout(() => {
+                if (hintElement.parentElement) {
+                    hintElement.parentElement.removeChild(hintElement);
+                }
+            }, 500);
+        }
+        
+        // Очистка всех подсказок
+        function clearAllHints() {
+            hintContainer.innerHTML = '';
+            hintTimers.forEach(timer => clearTimeout(timer));
+            hintTimers = [];
+        }
+        
+        // Показ подсказок с задержкой
+        function showHints() {
+            // Подсказка нажать на штамп (через 3 секунды)
+            createHint('Нажми на штамп, чтобы открыть конверт', 'top', document.querySelector('.pin'), 'top', 3000);
+            
+            // Подсказка открыть письмо (через 10 секунд, если конверт еще не открыт)
+            setTimeout(() => {
+                if (!isEnvelopeOpen) {
+                    createHint('Затем нажми на письмо, чтобы открыть приглашение', 'bottom', document.querySelector('.letter'), 'bottom');
+                }
+            }, 10000);
+        }
+        
+        // Показ подсказки про билет после открытия модального окна
+        function showTicketHint() {
+            // Подсказка про билет (через 5 секунд после открытия модального окна)
+            createHint('Не забудь распечатать билет на праздник!', 'top', document.querySelector('.ticket-btn'), 'top', 5000);
+        }
 
         function openEnvelope() {
             if (!isEnvelopeOpen) {
                 envelopeWrapper.classList.add('open');
                 isEnvelopeOpen = true;
+                
+                // Убираем все подсказки
+                clearAllHints();
+                
+                // Показываем подсказку про письмо
+                createHint('Теперь нажми на письмо, чтобы открыть приглашение', 'bottom', document.querySelector('.letter'), 'bottom', 1000);
                 
                 // Воспроизводим музыку с обработкой promise
                 const playPromise = music.play();
@@ -276,6 +442,12 @@
                 document.documentElement.style.overflow = 'hidden';
                 startCountdown();
                 
+                // Убираем все подсказки
+                clearAllHints();
+                
+                // Показываем подсказку про билет
+                showTicketHint();
+                
                 // Фокусируемся на модальном окне для доступности
                 modal.focus();
             }
@@ -285,6 +457,9 @@
             modal.hidden = true;
             document.body.style.overflow = '';
             document.documentElement.style.overflow = '';
+            
+            // Убираем все подсказки
+            clearAllHints();
         }
 
         function scrollToTicket() {
@@ -370,6 +545,9 @@
 
             playSound('pop.mp3');
             setTimeout(() => playSound('print-sound.mp3'), 300);
+            
+            // Убираем все подсказки
+            clearAllHints();
         }
 
         // Обработчики событий
@@ -454,6 +632,9 @@
             
             // Устанавливаем доступность для модального окна
             modal.setAttribute('aria-hidden', 'true');
+            
+            // Показываем подсказки через некоторое время после загрузки
+            setTimeout(showHints, 1000);
         });
     </script>
 </body>
