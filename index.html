@@ -95,7 +95,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 240, 245, 0.98);
+            background-color: rgba(255, 240, 245, 0.7); /* Полупрозрачный фон */
             z-index: 100;
             justify-content: center;
             align-items: center;
@@ -352,7 +352,7 @@
 
         .ticket-details {
             font-size: 16px;
-            color: 5a4a4a;
+            color: #5a4a4a;
             line-height: 1.7;
         }
 
@@ -430,7 +430,7 @@
             }
         }
 
-        /* Конверт нежно-розового цвета с прозрачностью */
+        /* Конверт нежно-розового цвета БЕЗ прозрачности */
         .envelope {
             position: absolute;
             height: 100%;
@@ -438,9 +438,9 @@
             top: 0;
             left: 0;
             border-top: 125px solid transparent;
-            border-right: 187px solid rgba(248, 215, 218, 0.7); /* Добавлена прозрачность */
-            border-bottom: 125px solid rgba(248, 215, 218, 0.7); /* Добавлена прозрачность */
-            border-left: 187px solid rgba(248, 215, 218, 0.7); /* Добавлена прозрачность */
+            border-right: 187px solid #f8d7da; /* Убрана прозрачность */
+            border-bottom: 125px solid #f8d7da; /* Убрана прозрачность */
+            border-left: 187px solid #f8d7da; /* Убрана прозрачность */
             z-index: 3;
             filter: drop-shadow(0 3px 6px rgba(167, 108, 110, 0.4));
         }
@@ -448,9 +448,9 @@
         @media (max-width: 480px) {
             .envelope {
                 border-top: 100px solid transparent;
-                border-right: 150px solid rgba(248, 215, 218, 0.7);
-                border-bottom: 100px solid rgba(248, 215, 218, 0.7);
-                border-left: 150px solid rgba(248, 215, 218, 0.7);
+                border-right: 150px solid #f8d7da;
+                border-bottom: 100px solid #f8d7da;
+                border-left: 150px solid #f8d7da;
             }
             
             .wrapper {
@@ -486,7 +486,7 @@
 
         /* lid when envelope open */
         .lid.one {
-            border-top: 125px solid rgba(248, 198, 201, 0.7); /* Добавлена прозрачность */
+            border-top: 125px solid #f8c6c9; /* Убрана прозрачность */
             transform: rotateX(0deg);
             z-index: 3;
             transition-delay: 0.75s;
@@ -494,13 +494,13 @@
 
         @media (max-width: 480px) {
             .lid.one {
-                border-top: 100px solid rgba(248, 198, 201, 0.7);
+                border-top: 100px solid #f8c6c9;
             }
         }
 
         /* lid when envelope closes */
         .lid.two {
-            border-top: 125px solid rgba(244, 182, 186, 0.7); /* Добавлена прозрачность */
+            border-top: 125px solid #f4b6ba; /* Убрана прозрачность */
             transform: rotateX(0deg);
             z-index: 1;
             transition-delay: 0.5s;
@@ -508,7 +508,7 @@
 
         @media (max-width: 480px) {
             .lid.two {
-                border-top: 100px solid rgba(244, 182, 186, 0.7);
+                border-top: 100px solid #f4b6ba;
             }
         }
 
@@ -526,6 +526,7 @@
         .wrapper.open .letter {
             transform: translateY(-125px);
             transition-delay: 0.5s;
+            cursor: pointer;
         }
 
         @media (max-width: 480px) {
@@ -821,7 +822,7 @@
 <body>
     <div class="wrapper" id="envelopeWrapper">
         <div class="lid one"></div>
-        <div class="pin" onclick="toggleMusic(event)">
+        <div class="pin" onclick="toggleMusicAndOpenModal(event)">
             <i id="pinMusicIcon" class="music-icon fas fa-music"></i>
         </div>
         <div class="lid two"></div>
@@ -896,14 +897,13 @@
                     <!-- Билет -->
                     <div id="ticket" class="ticket">
                         <div class="ticket-content">
-                            <div></div>
-                            <div class="ticket-title printing-text">Билет</div>
+                            <div class="ticket-title printing-text">Билет на день рождения</div>
                             <div class="ticket-details">
-                                <p class="printing-text"></p>
-                                <p class="printing-text">📅 26/08/2025 </p>
-                                <p class="printing-text">⏰ 15:00 </p>
-                                <p class="printing-text">📍 ул. Шекснинская, д. 46, кв. 87 </p>
-                                <p class="printing-text"></p>
+                                <p class="printing-text">🎉 День рождения Эли 🎉</p>
+                                <p class="printing-text">📅 Дата: 26 августа 2025</p>
+                                <p class="printing-text">⏰ Время: 15:00</p>
+                                <p class="printing-text">📍 Адрес: ул. Шекснинская, д. 46, кв. 87</p>
+                                <p class="printing-text">🎁 Не забудь хорошее настроение!</p>
                             </div>
                         </div>
                     </div>
@@ -932,10 +932,11 @@
         let soundWaves = null;
         let isEnvelopeOpen = false;
 
-        function toggleMusic(event) {
-            // Останавливаем всплытие события, чтобы не открывалось модальное окно
+        function toggleMusicAndOpenModal(event) {
+            // Останавливаем всплытие события
             event.stopPropagation();
-
+            
+            // Включаем/выключаем музыку
             if (isMusicPlaying) {
                 music.pause();
                 pinMusicIcon.classList.remove('fa-volume-up');
@@ -948,8 +949,7 @@
                 }
             } else {
                 music.play().catch(error => {
-                    console.log('Автовоспроизведение заблокировано. Для прослушивания музыки нажмите на значок музыки.');
-                    alert('Для прослушивания музыки нажмите на значок музыки еще раз.');
+                    console.log('Автовоспроизведение заблокировано.');
                 });
                 pinMusicIcon.classList.remove('fa-music');
                 pinMusicIcon.classList.add('fa-volume-up');
@@ -962,6 +962,9 @@
                 }
             }
             isMusicPlaying = !isMusicPlaying;
+            
+            // Открываем модальное окно
+            openModal();
         }
 
         function openEnvelope() {
@@ -969,11 +972,6 @@
             if (!isEnvelopeOpen) {
                 envelopeWrapper.classList.add('open');
                 isEnvelopeOpen = true;
-                
-                // Автоматически открываем модальное окно через 1 секунду
-                setTimeout(() => {
-                    openModal();
-                }, 1000);
             }
         }
 
@@ -1032,7 +1030,7 @@
             const photoBooth = document.querySelector('.photo-booth');
 
             // Устанавливаем высоту контейнера фотобудки
-            photoBooth.style.height = '220px';
+            photoBooth.style.height = '280px';
 
             // Показываем билет с анимацией выхода из фотобудки
             ticket.style.display = 'block';
@@ -1184,21 +1182,6 @@
                 }
             }
         }, false);
-        
-        // Открытие конверта при загрузке на мобильных устройствах
-        function checkMobileAndOpenEnvelope() {
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                // Если это мобильное устройство, открываем конверт автоматически
-                setTimeout(() => {
-                    openEnvelope();
-                }, 1000);
-            }
-        }
-        
-        // Проверяем при загрузке страницы
-        document.addEventListener('DOMContentLoaded', function() {
-            checkMobileAndOpenEnvelope();
-        });
     </script>
 </body>
 
