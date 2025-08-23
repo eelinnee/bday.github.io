@@ -832,12 +832,6 @@
         </div>
     </div>
 
-    <!-- Кнопка прокрутки к билету -->
-    <div class="scroll-to-ticket" onclick="scrollToTicket()">
-        <i class="fas fa-ticket-alt"></i>
-    </div>
-
-    <!-- Модальное окно с приглашением -->
     <div id="congratulationModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -847,7 +841,6 @@
                 <p>Совсем скоро уже <b>26 августа</b>, и я приглашаю <b>тебя</b> разделить этот замечательный день
                     вместе со мной!</p>
 
-                <!-- Контейнер для обратного отсчета -->
                 <div class="countdown-container">
                     <div class="countdown-title">До праздника осталось:</div>
                     <div class="countdown">
@@ -876,7 +869,7 @@
                     <p>⏰ <strong>Время:</strong> 15:00</p>
                 </div>
 
-                <p><i>Убедительная просьба не забыть хорошее настроение и желание повеселиться!</i></p>
+                <p><i>Убедительная просьба не забыть хорошее настроение и желание получить хорошие воспоминания!</i></p>
 
                 <div style="margin-bottom: 40px;" class="map-container">
                     <iframe
@@ -885,24 +878,21 @@
                     </iframe>
                 </div>
 
-                <!-- Кнопка для получения билета - размещена по центру -->
                 <div class="ticket-btn-container">
                     <button class="ticket-btn" onclick="printTicket()">
                         Распечатать билет на праздник
                     </button>
                 </div>
 
-                <!-- Контейнер фотобудки с билетом -->
                 <div class="photo-booth">
-                    <!-- Билет -->
                     <div id="ticket" class="ticket">
                         <div class="ticket-content">
                             <div class="ticket-title printing-text">Билет на день рождения</div>
                             <div class="ticket-details">
-                                <p class="printing-text">🎉 День рождения Эли 🎉</p>
                                 <p class="printing-text">📅 Дата: 26 августа 2025</p>
                                 <p class="printing-text">⏰ Время: 15:00</p>
-                                <p class="printing-text">📍 Адрес: ул. Шекснинская, д. 46, кв. 87</p>
+                                <p class="printing-text">📍 Адрес: ул. Шекснинская,</p>
+                                <p class="printing-text">д. 46, 3 п, кв. 87</p>
                                 <p class="printing-text">🎁 Не забудь хорошее настроение!</p>
                             </div>
                         </div>
@@ -918,7 +908,6 @@
         </div>
     </div>
 
-    <!-- Аудио элемент -->
     <audio id="backgroundMusic" loop>
         <source src="Barbie-12-Dancing-Princesses-Theme-Audio-Barbie-in-the-12-Da.m4a" type="audio/mpeg">
         Ваш браузер не поддерживает аудио элемент.
@@ -933,12 +922,10 @@
         let isEnvelopeOpen = false;
 
         function openEnvelope() {
-            // Открываем конверт только если он еще не открыт
             if (!isEnvelopeOpen) {
                 envelopeWrapper.classList.add('open');
                 isEnvelopeOpen = true;
                 
-                // Включаем музыку при открытии конверта
                 music.play().catch(error => {
                     console.log('Автовоспроизведение заблокировано.');
                 });
@@ -946,7 +933,6 @@
                 pinMusicIcon.classList.add('fa-volume-up');
                 isMusicPlaying = true;
 
-                // Создаем анимацию звуковых волн
                 if (!soundWaves) {
                     soundWaves = document.createElement('div');
                     soundWaves.className = 'sound-waves';
@@ -956,13 +942,10 @@
         }
 
         function openModal() {
-            // Открываем модальное окно только если конверт уже открыт
             if (isEnvelopeOpen) {
                 document.getElementById('congratulationModal').style.display = 'flex';
                 document.body.style.overflow = 'hidden';
-                // Показываем кнопку прокрутки при открытии модального окна
                 document.querySelector('.scroll-to-ticket').style.display = 'flex';
-                // Запускаем отсчет времени при открытии модального окна
                 startCountdown();
             }
         }
@@ -970,11 +953,9 @@
         function closeModal() {
             document.getElementById('congratulationModal').style.display = 'none';
             document.body.style.overflow = 'auto';
-            // Скрываем кнопку прокрутки при закрытии модального окна
             document.querySelector('.scroll-to-ticket').style.display = 'none';
         }
 
-        // Функция плавной прокрутки к билету
         function scrollToTicket() {
             const ticket = document.getElementById('ticket');
             if (ticket) {
@@ -985,7 +966,6 @@
             }
         }
 
-        // Функция для создания хлопушек
         function createConfetti() {
             const colors = ['#f8d7da', '#d4a5a7', '#a76c6e', '#f8c6c9', '#f4b6ba'];
             for (let i = 0; i < 100; i++) {
@@ -1001,7 +981,6 @@
                 confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
                 document.body.appendChild(confetti);
 
-                // Удаляем конфетти после анимации
                 setTimeout(() => {
                     if (confetti.parentNode) {
                         confetti.parentNode.removeChild(confetti);
@@ -1010,48 +989,38 @@
             }
         }
 
-        // Функция для печати билета
         function printTicket() {
             const ticket = document.getElementById('ticket');
             const ticketBtn = document.querySelector('.ticket-btn');
             const photoBooth = document.querySelector('.photo-booth');
 
-            // Устанавливаем высоту контейнера фотобудки
             photoBooth.style.height = '280px';
 
-            // Показываем билет с анимацией выхода из фотобудки
             ticket.style.display = 'block';
             ticket.style.animation = 'printTicket 1.5s forwards';
 
-            // Добавляем эффект печати для текста
             const printingTexts = document.querySelectorAll('.printing-text');
             printingTexts.forEach((text, index) => {
                 text.style.animationDelay = `${index * 0.5}s`;
             });
 
-            // Плавная прокрутка к билету
             setTimeout(() => {
                 scrollToTicket();
             }, 500);
 
-            // Меняем кнопку
             ticketBtn.textContent = 'Билет получен!';
             ticketBtn.style.background = 'linear-gradient(145deg, #a76c6e, #d4a5a7)';
             ticketBtn.disabled = true;
 
-            // Запускаем хлопушки
             createConfetti();
 
-            // Проигрываем звук хлопушки
             const popSound = new Audio('pop.mp3');
             popSound.play().catch(e => console.log('Аудио не может быть воспроизведено'));
 
-            // Добавляем звук печатающего принтера
             const printSound = new Audio('print-sound.mp3');
             printSound.play().catch(e => console.log('Аудио печати не может быть воспроизведено'));
         }
 
-        // Закрытие модального окна при клике вне его
         window.onclick = function (event) {
             const modal = document.getElementById('congratulationModal');
             if (event.target == modal) {
@@ -1059,19 +1028,15 @@
             }
         }
 
-        // Закрытие модального окна по клавише Escape
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeModal();
             }
         });
 
-        // Функция обратного отсчета
         function startCountdown() {
-            // Устанавливаем дату события (26 августа текущего года)
             const eventDate = new Date(new Date().getFullYear(), 7, 26, 15, 0, 0); // Месяцы в JS: 0-январь, 7-август
 
-            // Если дата уже прошла в этом году, устанавливаем на следующий год
             if (eventDate < new Date()) {
                 eventDate.setFullYear(eventDate.getFullYear() + 1);
             }
@@ -1080,7 +1045,6 @@
                 const now = new Date();
                 const diff = eventDate - now;
 
-                // Если событие уже наступило
                 if (diff <= 0) {
                     document.getElementById('days').textContent = '00';
                     document.getElementById('hours').textContent = '00';
@@ -1090,23 +1054,19 @@
                     return;
                 }
 
-                // Вычисляем дни, часы, минуты и секунды
                 const days = Math.floor(diff / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-                // Обновляем значения на странице
                 document.getElementById('days').textContent = days.toString().padStart(2, '0');
                 document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
                 document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
                 document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
 
-                // Запускаем обновление каждую секунду
                 setTimeout(updateCountdown, 1000);
             }
 
-            // Запускаем отсчет
             updateCountdown();
         }
         
