@@ -275,6 +275,7 @@
             overflow: visible;
             display: flex;
             justify-content: center;
+            z-index: 5;
         }
 
         @media (max-width: 480px) {
@@ -580,7 +581,6 @@
             }
         }
 
-        /* Иконка музыки на штампе */
         .music-icon {
             position: absolute;
             color: #a76c6e;
@@ -833,6 +833,7 @@
             text-align: center;
             pointer-events: none;
             font-family: 'Prata';
+            transition: opacity 0.3s ease;
         }
 
         @keyframes tooltipPulse {
@@ -915,6 +916,43 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(167, 108, 110, 0.5);
         }
+
+        .envelope-tooltip {
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(167, 108, 110, 0.9);
+            color: white;
+            padding: 12px 18px;
+            border-radius: 25px;
+            font-size: 16px;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: tooltipPulse 2s infinite;
+            max-width: 250px;
+            text-align: center;
+            pointer-events: none;
+            font-family: 'Prata';
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .envelope-tooltip.visible {
+            opacity: 1;
+        }
+
+        .envelope-tooltip-arrow {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid rgba(167, 108, 110, 0.9);
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.00-beta3/css/all.min.css">
 </head>
@@ -923,13 +961,17 @@
     <div id="introOverlay" class="intro-overlay">
         <div class="intro-content">
             <h2 class="intro-title">Elina's Birthday Party</h2>
-            <p class="intro-text">Приглашаю Вас на свой День рождения!
-                Чтобы продолжить ознакомпление с этим письмом, нажмите на кнопку ниже!</p>
+            <p class="intro-text">Приглашаю Вас на свой День рождения!</p>
+            <p class="intro-text">Чтобы продолжить ознакомпление с этим письмом, нажмите на кнопку ниже!</p>
             <button class="intro-btn" onclick="startExperience()">𐔌՞. .՞𐦯</button>
         </div>
     </div>
 
     <div class="wrapper" id="envelopeWrapper">
+        <div id="envelopeTooltip" class="envelope-tooltip">
+            Нажмите на приглашение
+            <div class="envelope-tooltip-arrow"></div>
+        </div>
         <div class="lid one"></div>
         <div class="pin" onclick="openEnvelope()">
             <i id="pinMusicIcon" class="music-icon fas fa-music"></i>
@@ -997,7 +1039,7 @@
                 <div class="photo-booth">
                     <div id="ticket" class="ticket">
                         <div class="ticket-content">
-                            <div class="ticket-title printing-text">Билет на день рождения</div>
+                            <div class="ticket-title printing-text">Билет на День Рождения</div>
                             <div class="ticket-details">
                                 <p></p>
                                 <p class="printing-text">📅 Дата: 26 августа 2025</p>
@@ -1032,10 +1074,12 @@
         const pinMusicIcon = document.getElementById('pinMusicIcon');
         const envelopeWrapper = document.getElementById('envelopeWrapper');
         const introOverlay = document.getElementById('introOverlay');
+        const envelopeTooltip = document.getElementById('envelopeTooltip');
         let isMusicPlaying = false;
         let soundWaves = null;
         let isEnvelopeOpen = false;
         let tooltipTimeout;
+        let stampTooltip = null;
 
         function startExperience() {
             introOverlay.style.opacity = '0';
@@ -1087,6 +1131,10 @@
                     break;
             }
 
+            if (element.classList.contains('pin')) {
+                stampTooltip = tooltip;
+            }
+
             clearTimeout(tooltipTimeout);
             tooltipTimeout = setTimeout(() => {
                 tooltip.style.opacity = '0';
@@ -1102,6 +1150,14 @@
             if (!isEnvelopeOpen) {
                 envelopeWrapper.classList.add('open');
                 isEnvelopeOpen = true;
+
+                if (stampTooltip && stampTooltip.parentNode) {
+                    stampTooltip.parentNode.removeChild(stampTooltip);
+                }
+
+                setTimeout(() => {
+                    envelopeTooltip.classList.add('visible');
+                }, 1000);
 
                 music.play().catch(error => {
                     console.log('Автовоспроизведение заблокировано.');
@@ -1120,6 +1176,8 @@
 
         function openModal() {
             if (isEnvelopeOpen) {
+                envelopeTooltip.classList.remove('visible');
+
                 document.getElementById('congratulationModal').style.display = 'flex';
                 document.body.style.overflow = 'hidden';
                 document.querySelector('.scroll-to-ticket').style.display = 'flex';
