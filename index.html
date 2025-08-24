@@ -4,216 +4,947 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>𐙚🧸ྀ𝜗𝜚⋆₊˚ Приглашение на день рождения</title>
-    <meta name="description" content="Приглашение на день рождения 26 августа">
+    <title>𐙚🧸ྀ𝜗𝜚⋆₊˚</title>
 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    
-    <!-- Preload важных ресурсов -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Prata&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="KosolapaScript-Regular.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="preload" href="background.jpg" as="image">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet">
-    
-    <noscript>
-        <link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet">
-    </noscript>
-
     <style>
-        /* CSS остаётся в основном таким же, но с небольшими улучшениями */
-        
-        /* Добавляем will-change для элементов с анимацией */
-        .letter,
-        .lid,
-        .pin,
-        .ticket,
-        .confetti,
-        .sound-waves {
-            will-change: transform, opacity;
+        html {
+            scroll-behavior: smooth;
         }
-        
-        /* Улучшаем плавность анимаций */
-        .letter {
-            transform: translateY(0);
-            transition: transform 0.5s cubic-bezier(0.18, 1.25, 0.4, 1), 
-                        box-shadow 0.3s ease;
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        
-        /* Улучшаем accessibility для модального окна */
-        .modal:not([hidden]) {
+
+        body {
+            min-height: 100vh;
+            width: 100%;
             display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url(background.jpg);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f0f0;
+            padding: 20px;
+            position: relative;
         }
-        
-        /* Гарантируем, что модальное окно поверх всего */
+
+        .wrapper {
+            height: 250px;
+            width: 375px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 0;
+            cursor: pointer;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        .prata-regular {
+            font-family: "Prata", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'MyCottageFont';
+            src: url('KosolapaScript-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        .letter {
+            position: absolute;
+            width: 85%;
+            height: 90%;
+            background-color: #fffaf0;
+            border-radius: 4px;
+            z-index: 2;
+            transition: all 0.5s ease-in-out;
+            transform: translateY(0);
+            padding: 25px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #f8d7da;
+        }
+
+        .letter p {
+            font-size: 36px;
+            color: #a76c6e;
+            transition: all 0.3s ease;
+            font-family: 'Cursive', 'MyCottageFont', cursive;
+            text-align: center;
+        }
+
         .modal {
-            z-index: 10000;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 240, 245, 0.7);
+            /* Полупрозрачный фон */
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+            padding: 15px;
         }
-        
-        /* Улучшаем контрастность для доступности */
+
+        .modal-content {
+            background: #fffaf0;
+            padding: 35px;
+            border-radius: 12px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 95vh;
+            text-align: center;
+            position: relative;
+            animation: modalFadeIn 0.5s;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: #d4a5a7 #f8e8e8;
+            border: 2px solid #f8d7da;
+            box-shadow: 0 8px 25px rgba(167, 108, 110, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                padding: 25px 20px;
+                margin: 0;
+                width: 98%;
+            }
+
+            .modal {
+                padding: 10px;
+            }
+        }
+
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: #f8e8e8;
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: #d4a5a7;
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: #c89597;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 32px;
+            cursor: pointer;
+            color: #a76c6e;
+            z-index: 101;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(248, 215, 218, 0.3);
+            border-radius: 50%;
+        }
+
+        .modal-content h2 {
+            color: #a76c6e;
+            margin-bottom: 25px;
+            font-family: 'Cursive', 'MyCottageFont', cursive;
+            font-size: 32px;
+        }
+
+        @media (max-width: 480px) {
+            .modal-content h2 {
+                font-size: 28px;
+                margin-bottom: 20px;
+            }
+        }
+
+        .modal-content p {
+            margin-bottom: 18px;
+            line-height: 1.7;
+            color: #5a4a4a;
+            font-size: 18px;
+        }
+
+        .congratulation-text {
+            margin-bottom: 35px;
+            font-family: 'Prata';
+            text-align: left;
+        }
+
         .address-info {
             background-color: #f8e8e8;
-            color: #4a3a3a;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #d4a5a7;
+            border-right: 5px solid #d4a5a7;
         }
-        
-        /* Улучшаем фокусируемые элементы */
-        .ticket-btn:focus,
-        .close-btn:focus,
-        .pin:focus {
-            outline: 2px solid #a76c6e;
-            outline-offset: 2px;
+
+        .address-info p {
+            margin: 8px 0;
+            font-weight: bold;
+            font-size: 18px;
         }
-        
-        /* Улучшаем читаемость текста */
-        .modal-content {
-            line-height: 1.6;
+
+        .map-container {
+            margin: 25px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
-        
-        /* Улучшаем анимацию появления */
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.98);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
+
+        .map-container iframe {
+            width: 100%;
+            height: 350px;
+            border: none;
+        }
+
+        .note {
+            font-style: italic;
+            color: #a76c6e;
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #f9f0f0;
+            border-radius: 8px;
+            font-size: 18px;
+        }
+
+        .ticket-btn-container {
+            display: flex;
+            justify-content: center;
+            margin: 25px 0;
+        }
+
+        .ticket-btn {
+            background: linear-gradient(145deg, #d4a5a7, #f8d7da);
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            font-size: 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Prata';
+            font-weight: 800;
+            box-shadow: 0 6px 18px rgba(167, 108, 110, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 480px) {
+            .ticket-btn {
+                padding: 16px 30px;
+                font-size: 18px;
             }
         }
-        
-        /* Улучшаем анимацию confetti */
-        @keyframes confettiFall {
-            0% {
-                transform: translate3d(0, -100vh, 0) rotate(0deg);
-                opacity: 1;
-            }
-           100% {
-                transform: translate3d(0, 100vh, 0) rotate(360deg);
-                opacity: 0;
+
+        .ticket-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(167, 108, 110, 0.5);
+        }
+
+        .photo-booth {
+            position: relative;
+            width: 380px;
+            height: 0;
+            margin: 35px auto;
+            overflow: visible;
+            display: flex;
+            justify-content: center;
+        }
+
+        @media (max-width: 480px) {
+            .photo-booth {
+                width: 320px;
             }
         }
-        
-        /* Улучшаем печать текста */
-        @keyframes typing {
-            from {
-                width: 0;
-                opacity: 1;
-            }
-            to {
-                width: 100%;
-                opacity: 1;
+
+        .photo-booth::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 340px;
+            height: 25px;
+            background: #a76c6e;
+            border-radius: 12px 12px 0 0;
+            z-index: 10;
+        }
+
+        @media (max-width: 480px) {
+            .photo-booth::before {
+                width: 300px;
             }
         }
-        
-        /* Улучшаем анимацию билета */
+
+        .ticket {
+            display: none;
+            background: white;
+            padding: 25px;
+            margin: 0 auto;
+            border: 3px dashed #d4a5a7;
+            border-radius: 12px;
+            width: 340px;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            transform-origin: top center;
+            z-index: 5;
+        }
+
+        @media (max-width: 480px) {
+            .ticket {
+                width: 280px;
+                padding: 20px;
+            }
+        }
+
+        .ticket::before,
+        .ticket::after {
+            content: "•";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #d4a5a7;
+            font-size: 28px;
+        }
+
+        .ticket::before {
+            left: -12px;
+        }
+
+        .ticket::after {
+            right: -12px;
+        }
+
+        .ticket-content {
+            text-align: center;
+        }
+
+        .ticket-title {
+            font-family: 'MyCottageFont', cursive;
+            color: #a76c6e;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .ticket-details {
+            font-size: 16px;
+            color: #5a4a4a;
+            line-height: 1.7;
+        }
+
         @keyframes printTicket {
             0% {
                 transform: translateY(-100%) scale(0.9);
                 opacity: 0;
             }
+
             30% {
                 transform: translateY(-70%) scale(0.95);
                 opacity: 0.5;
             }
+
             100% {
                 transform: translateY(0) scale(1);
                 opacity: 1;
             }
         }
-        
-        /* Стили для подсказок */
-        .hint {
+
+        .printing-text {
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 auto;
+            opacity: 0;
+            animation: typing 2s steps(40, end) forwards;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+                opacity: 1;
+            }
+
+            to {
+                width: 100%;
+                opacity: 1;
+            }
+        }
+
+        /* Стили для хлопушек */
+        .confetti {
             position: fixed;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 15px 20px;
-            box-shadow: 0 5px 25px rgba(167, 108, 110, 0.3);
-            z-index: 10002;
-            max-width: 250px;
+            width: 12px;
+            height: 12px;
+            background-color: #f8d7da;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .envelope {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            border-top: 125px solid transparent;
+            border-right: 187px solid #f8d7da;
+            /* Убрана прозрачность */
+            border-bottom: 125px solid #f8d7da;
+            /* Убрана прозрачность */
+            border-left: 187px solid #f8d7da;
+            /* Убрана прозрачность */
+            z-index: 3;
+            filter: drop-shadow(0 3px 6px rgba(167, 108, 110, 0.4));
+        }
+
+        @media (max-width: 480px) {
+            .envelope {
+                border-top: 100px solid transparent;
+                border-right: 150px solid #f8d7da;
+                border-bottom: 100px solid #f8d7da;
+                border-left: 150px solid #f8d7da;
+            }
+
+            .wrapper {
+                height: 200px;
+                width: 300px;
+            }
+
+            .letter p {
+                font-size: 30px;
+            }
+        }
+
+        .lid {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            border-right: 187px solid transparent;
+            border-bottom: 125px solid transparent;
+            border-left: 187px solid transparent;
+            transform-origin: top;
+            transition: transform 0.25s linear;
+        }
+
+        @media (max-width: 480px) {
+            .lid {
+                border-right: 150px solid transparent;
+                border-bottom: 100px solid transparent;
+                border-left: 150px solid transparent;
+            }
+        }
+
+        .lid.one {
+            border-top: 125px solid #f8c6c9;
+            transform: rotateX(0deg);
+            z-index: 3;
+            transition-delay: 0.75s;
+        }
+
+        @media (max-width: 480px) {
+            .lid.one {
+                border-top: 100px solid #f8c6c9;
+            }
+        }
+
+        .lid.two {
+            border-top: 125px solid #f4b6ba;
+            /* Убрана прозрачность */
+            transform: rotateX(0deg);
+            z-index: 1;
+            transition-delay: 0.5s;
+        }
+
+        @media (max-width: 480px) {
+            .lid.two {
+                border-top: 100px solid #f4b6ba;
+            }
+        }
+
+        .wrapper.open .lid.one {
+            transform: rotateX(90deg);
+            transition-delay: 0s;
+        }
+
+        .wrapper.open .lid.two {
+            transform: rotateX(180deg);
+            transition-delay: 0.25s;
+        }
+
+        .wrapper.open .letter {
+            transform: translateY(-125px);
+            transition-delay: 0.5s;
+            cursor: pointer;
+        }
+
+        @media (max-width: 480px) {
+            .wrapper.open .letter {
+                transform: translateY(-100px);
+            }
+        }
+
+        .pin {
+            position: absolute;
+            top: 70px;
+            z-index: 6;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.25));
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        @media (max-width: 480px) {
+            .pin {
+                top: 55px;
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        .pin:hover {
+            transform: scale(1.1);
+        }
+
+        .pin::before {
+            content: "";
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-image: url(letterpin.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: rotate(-10deg);
+        }
+
+        @media (max-width: 480px) {
+            .pin::before {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        /* Иконка музыки на штампе */
+        .music-icon {
+            position: absolute;
+            color: #a76c6e;
+            font-size: 24px;
+            z-index: 7;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 480px) {
+            .music-icon {
+                font-size: 20px;
+            }
+        }
+
+        .scroll-to-ticket {
+            display: none;
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: rgba(167, 108, 110, 0.9);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 480px) {
+            .scroll-to-ticket {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        .scroll-to-ticket:hover {
+            background-color: rgba(167, 108, 110, 1);
+            transform: scale(1.1);
+        }
+
+        /* Анимация звуковых волн */
+        .sound-waves {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #f8d7da;
+            animation: soundWave 1.5s infinite;
+            opacity: 0;
+            z-index: 5;
+        }
+
+        @keyframes soundWave {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .t-records {
+            opacity: 0;
+        }
+
+        .t-records_animated {
+            transition: opacity ease-in-out 0.2s;
+        }
+
+        .t-records.t-records_visible {
+            opacity: 1;
+        }
+
+        .countdown-container {
+            margin: 25px 0;
+            padding: 20px;
+            background-color: #f8e8e8;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .countdown-title {
             font-family: 'Prata', serif;
             color: #a76c6e;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background-color: #fffaf0;
+            padding: 15px;
+            border-radius: 8px;
+            min-width: 70px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 480px) {
+            .countdown-item {
+                min-width: 60px;
+                padding: 12px;
+            }
+        }
+
+        .countdown-number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #a76c6e;
+        }
+
+        @media (max-width: 480px) {
+            .countdown-number {
+                font-size: 24px;
+            }
+        }
+
+        .countdown-label {
+            font-size: 14px;
+            color: #5a4a4a;
+        }
+
+        @media (max-width: 480px) {
+            .countdown-label {
+                font-size: 12px;
+            }
+        }
+
+        /* Улучшения для мобильных устройств */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .address-info {
+                padding: 15px;
+            }
+
+            .address-info p {
+                font-size: 16px;
+            }
+
+            .modal-content p {
+                font-size: 16px;
+            }
+
+            .map-container iframe {
+                height: 300px;
+            }
+
+            .ticket-title {
+                font-size: 24px;
+            }
+
+            .ticket-details {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .countdown {
+                gap: 8px;
+            }
+
+            .countdown-item {
+                min-width: 55px;
+            }
+
+            .map-container iframe {
+                height: 250px;
+            }
+
+            .modal-content h2 {
+                font-size: 26px;
+            }
+
+            img[width="80%"] {
+                width: 95% !important;
+            }
+
+            p[style*="font-size: xx-large"] {
+                font-size: xx-large !important;
+            }
+
+            p[style*="font-size:x-large"] {
+                font-size: x-large !important;
+            }
+        }
+
+        @media (hover: none) {
+
+            .pin:hover,
+            .ticket-btn:hover,
+            .scroll-to-ticket:hover {
+                transform: none;
+            }
+        }
+
+        /* Предотвращение масштабирования при вводе */
+        @media (max-width: 768px) {
+
+            input,
+            select,
+            textarea {
+                font-size: 16px !important;
+            }
+        }
+
+        .modal-content {
+            font-size: 1.1em;
+        }
+
+        /* Увеличение области клика для мобильных */
+        @media (max-width: 768px) {
+
+            .ticket-btn,
+            .close-btn,
+            .pin {
+                min-height: 44px;
+            }
+        }
+
+        /* Стили для всплывающих подсказок */
+        .tooltip {
+            position: fixed;
+            background-color: rgba(167, 108, 110, 0.9);
+            color: white;
+            padding: 12px 18px;
+            border-radius: 25px;
             font-size: 16px;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: tooltipPulse 2s infinite;
+            max-width: 250px;
             text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s, transform 0.5s;
             pointer-events: none;
+            font-family: 'Prata';
         }
-        
-        .hint.visible {
-            opacity: 1;
-            transform: translateY(0);
+
+        @keyframes tooltipPulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.05);
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            }
         }
-        
-        .hint::after {
-            content: '';
+
+        .tooltip-arrow {
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.95);
-            transform: rotate(45deg);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid rgba(167, 108, 110, 0.9);
         }
-        
-        .hint-top::after {
-            bottom: -10px;
-            left: 50%;
-            margin-left: -10px;
+
+        .intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(249, 240, 240, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            transition: opacity 0.5s ease;
         }
-        
-        .hint-bottom::after {
-            top: -10px;
-            left: 50%;
-            margin-left: -10px;
+
+        .intro-content {
+            text-align: center;
+            padding: 30px;
+            max-width: 500px;
         }
-        
-        .hint-left::after {
-            right: -10px;
-            top: 50%;
-            margin-top: -10px;
+
+        .intro-title {
+            font-family: 'MyCottageFont', cursive;
+            font-variant: initial;
+            color: #a76c6e;
+            font-size: 32px;
+            margin-bottom: 20px;
         }
-        
-        .hint-right::after {
-            left: -10px;
-            top: 50%;
-            margin-top: -10px;
-        }
-        
-        .hint-close {
-            position: absolute;
-            top: 5px;
-            right: 10px;
+
+        .intro-text {
             font-size: 18px;
+            color: #5a4a4a;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-family: Prata;
+        }
+
+        .intro-btn {
+            background: linear-gradient(145deg, #d4a5a7, #f8d7da);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 50px;
             cursor: pointer;
-            pointer-events: all;
+            font-family: 'MyCottageFont', cursive;
+            box-shadow: 0 6px 18px rgba(167, 108, 110, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .intro-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(167, 108, 110, 0.5);
         }
     </style>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.00-beta3/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.00-beta3/css/all.min.css">
 </head>
 
 <body>
-    <!-- Добавляем семантические элементы -->
-    <main>
-        <div class="wrapper" id="envelopeWrapper" role="region" aria-label="Конверт с приглашением">
-            <div class="lid one"></div>
-            <div class="pin" onclick="openEnvelope()" role="button" aria-label="Открыть конверт" tabindex="0">
-                <i id="pinMusicIcon" class="music-icon fas fa-music" aria-hidden="true"></i>
-            </div>
-            <div class="lid two"></div>
-            <div class="envelope"></div>
-            <div class="letter" onclick="openModal()" role="button" aria-label="Прочитать приглашение" tabindex="0">
-                <p>приглашение</p>
-            </div>
+    <div id="introOverlay" class="intro-overlay">
+        <div class="intro-content">
+            <h2 class="intro-title">Elina's Birthday Party</h2>
+            <p class="intro-text">Приглашаю Вас на свой День рождения!
+                Чтобы продолжить ознакомпление с этим письмом, нажмите на кнопку ниже!</p>
+            <button class="intro-btn" onclick="startExperience()">𐔌՞. .՞𐦯</button>
         </div>
-    </main>
+    </div>
 
-    <div id="congratulationModal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="wrapper" id="envelopeWrapper">
+        <div class="lid one"></div>
+        <div class="pin" onclick="openEnvelope()">
+            <i id="pinMusicIcon" class="music-icon fas fa-music"></i>
+        </div>
+        <div class="lid two"></div>
+        <div class="envelope"></div>
+        <div class="letter" onclick="openModal()">
+            <p>приглашение</p>
+        </div>
+    </div>
+
+    <div id="congratulationModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()" role="button" aria-label="Закрыть">&times;</span>
-            <h2 id="modalTitle">Уважаемый гость!</h2>
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Дорогой друг!</h2>
 
             <div class="congratulation-text">
                 <p>Совсем скоро уже <b>26 августа</b>, и я приглашаю <b>тебя</b> разделить этот замечательный день
@@ -221,7 +952,7 @@
 
                 <div class="countdown-container">
                     <div class="countdown-title">До праздника осталось:</div>
-                    <div class="countdown" role="timer" aria-live="polite">
+                    <div class="countdown">
                         <div class="countdown-item">
                             <div id="days" class="countdown-number">00</div>
                             <div class="countdown-label">дней</div>
@@ -247,31 +978,32 @@
                     <p>⏰ <strong>Время:</strong> 15:00</p>
                 </div>
 
-                <p><i>Убедительная просьба не забыть хорошее настроение и желание получить хорошие воспоминания!</i></p>
+                <p><i>Убедительная просьба — не забыть хорошее настроение и желание получить хорошие воспоминания!</i>
+                </p>
 
                 <div style="margin-bottom: 40px;" class="map-container">
                     <iframe
                         src="https://yandex.ru/map-widget/v1/?ll=44.503213%2C48.762597&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1NzgxOTk2MBJZ0KDQvtGB0YHQuNGPLCDQktC-0LvQs9C-0LPRgNCw0LQsINCo0LXQutGB0L3QuNC90YHQutCw0Y8g0YPQu9C40YbQsCwgNDYsINC_0L7QtNGK0LXQt9C0IDMiCg3dAzJCFR0NQ0Iwo6T88As%2C&z=18.6"
-                        frameborder="0" allowfullscreen="true" title="Карта проезда к месту празднования">
+                        frameborder="0" allowfullscreen="true">
                     </iframe>
                 </div>
 
                 <div class="ticket-btn-container">
                     <button class="ticket-btn" onclick="printTicket()">
-                        Распечатать билет на праздник
+                        Получить билет на праздник
                     </button>
                 </div>
 
                 <div class="photo-booth">
-                    <div id="ticket" class="ticket" hidden>
+                    <div id="ticket" class="ticket">
                         <div class="ticket-content">
                             <div class="ticket-title printing-text">Билет на день рождения</div>
                             <div class="ticket-details">
+                                <p></p>
                                 <p class="printing-text">📅 Дата: 26 августа 2025</p>
                                 <p class="printing-text">⏰ Время: 15:00</p>
                                 <p class="printing-text">📍 Адрес: ул. Шекснинская,</p>
                                 <p class="printing-text">д. 46, 3 п, кв. 87</p>
-                                <p class="printing-text">🎁 Не забудь хорошее настроение!</p>
                             </div>
                         </div>
                     </div>
@@ -280,186 +1012,125 @@
 
             <p style="font-family: 'MyCottageFont'; font-size: xx-large;">С нетерпением жду встречи!</p>
 
-            <img style="margin-bottom: 0;" width=80% src="minime.png" alt="Мини-я" loading="lazy">
-            <p style="margin-top: 20px; font-family: 'MyCottageFont'; font-size:x-large;">С любовью, ваша Эля </p>
+            <img style="margin-bottom: 0;" width=80% src="minime.png" alt="Мини-я">
+            <p style="margin-top: 20px; font-family: 'MyCottageFont'; font-size:x-large;">С любовью, ваша Эля! </p>
 
         </div>
     </div>
 
-    <!-- Контейнер для подсказок -->
-    <div id="hintContainer"></div>
+    <div class="scroll-to-ticket" onclick="scrollToTicket()">
+        <i class="fas fa-ticket-alt"></i>
+    </div>
 
-    <audio id="backgroundMusic" loop preload="metadata">
-        <source src="Barbie-12-Dancing-Princesses-Theme-Audio-Barbie-in-the-12-Da.m4a" type="audio/mp4">
-        <source src="Barbie-12-Dancing-Princesses-Theme-Audio-Barbie-in-the-12-Da.mp3" type="audio/mpeg">
+    <audio id="backgroundMusic" loop>
+        <source src="Barbie-12-Dancing-Princesses-Theme-Audio-Barbie-in-the-12-Da.m4a" type="audio/mpeg">
         Ваш браузер не поддерживает аудио элемент.
     </audio>
 
     <script>
-        // Улучшенный JavaScript код
         const music = document.getElementById('backgroundMusic');
         const pinMusicIcon = document.getElementById('pinMusicIcon');
         const envelopeWrapper = document.getElementById('envelopeWrapper');
-        const modal = document.getElementById('congratulationModal');
-        const hintContainer = document.getElementById('hintContainer');
+        const introOverlay = document.getElementById('introOverlay');
         let isMusicPlaying = false;
         let soundWaves = null;
         let isEnvelopeOpen = false;
-        let hintTimers = [];
-        
-        // Устанавливаем громкость на половину для лучшего пользовательского опыта
-        music.volume = 0.5;
+        let tooltipTimeout;
 
-        // Функция для создания подсказок
-        function createHint(text, position, targetElement, placement = 'top', delay = 0) {
-            // Очищаем предыдущие подсказки
-            clearAllHints();
-            
-            const timer = setTimeout(() => {
-                const hint = document.createElement('div');
-                hint.className = `hint hint-${placement}`;
-                hint.innerHTML = `${text}<span class="hint-close" onclick="removeHint(this.parentElement)">&times;</span>`;
-                
-                hintContainer.appendChild(hint);
-                
-                // Позиционируем подсказку относительно целевого элемента
-                positionHint(hint, targetElement, placement);
-                
-                // Показываем подсказку с анимацией
-                setTimeout(() => {
-                    hint.classList.add('visible');
-                }, 100);
-                
-                // Сохраняем ID подсказки для последующего удаления
-                hint.dataset.hintId = `hint-${Date.now()}`;
-            }, delay);
-            
-            hintTimers.push(timer);
-            return timer;
+        function startExperience() {
+            introOverlay.style.opacity = '0';
+            setTimeout(() => {
+                introOverlay.style.display = 'none';
+                showTooltip('Нажмите на штамп, чтобы открыть конверт', document.querySelector('.pin'));
+            }, 120);
         }
-        
-        // Позиционирование подсказки
-        function positionHint(hint, targetElement, placement) {
-            const targetRect = targetElement.getBoundingClientRect();
-            const hintRect = hint.getBoundingClientRect();
-            
-            switch(placement) {
+
+        function showTooltip(text, element, position = 'top') {
+            const oldTooltip = document.querySelector('.tooltip');
+            if (oldTooltip) {
+                oldTooltip.remove();
+            }
+
+            const tooltip = document.createElement('div');
+            tooltip.className = 'tooltip';
+            tooltip.textContent = text;
+
+            document.body.appendChild(tooltip);
+
+            const rect = element.getBoundingClientRect();
+
+            switch (position) {
                 case 'top':
-                    hint.style.top = `${targetRect.top - hintRect.height - 15}px`;
-                    hint.style.left = `${targetRect.left + (targetRect.width - hintRect.width) / 2}px`;
+                    tooltip.style.top = (rect.top - tooltip.offsetHeight - 15) + 'px';
+                    tooltip.style.left = (rect.left + rect.width / 2) + 'px';
+                    tooltip.style.transform = 'translate(-50%, -50%)';
+
+                    const arrow = document.createElement('div');
+                    arrow.className = 'tooltip-arrow';
+                    arrow.style.bottom = '-10px';
+                    arrow.style.left = '50%';
+                    arrow.style.transform = 'translateX(-50%)';
+                    tooltip.appendChild(arrow);
                     break;
+
                 case 'bottom':
-                    hint.style.top = `${targetRect.bottom + 15}px`;
-                    hint.style.left = `${targetRect.left + (targetRect.width - hintRect.width) / 2}px`;
-                    break;
-                case 'left':
-                    hint.style.top = `${targetRect.top + (targetRect.height - hintRect.height) / 2}px`;
-                    hint.style.left = `${targetRect.left - hintRect.width - 15}px`;
-                    break;
-                case 'right':
-                    hint.style.top = `${targetRect.top + (targetRect.height - hintRect.height) / 2}px`;
-                    hint.style.left = `${targetRect.right + 15}px`;
+                    tooltip.style.top = (rect.bottom + 15) + 'px';
+                    tooltip.style.left = (rect.left + rect.width / 2) + 'px';
+                    tooltip.style.transform = 'translateX(-50%)';
+
+                    const arrowBottom = document.createElement('div');
+                    arrowBottom.className = 'tooltip-arrow';
+                    arrowBottom.style.top = '-10px';
+                    arrowBottom.style.left = '50%';
+                    arrowBottom.style.transform = 'translateX(-50%) rotate(180deg)';
+                    tooltip.appendChild(arrowBottom);
                     break;
             }
-        }
-        
-        // Удаление подсказки
-        function removeHint(hintElement) {
-            hintElement.classList.remove('visible');
-            setTimeout(() => {
-                if (hintElement.parentElement) {
-                    hintElement.parentElement.removeChild(hintElement);
-                }
-            }, 500);
-        }
-        
-        // Очистка всех подсказок
-        function clearAllHints() {
-            hintContainer.innerHTML = '';
-            hintTimers.forEach(timer => clearTimeout(timer));
-            hintTimers = [];
-        }
-        
-        // Показ подсказок с задержкой
-        function showHints() {
-            // Подсказка нажать на штамп (через 3 секунды)
-            createHint('Нажми на штамп, чтобы открыть конверт', 'top', document.querySelector('.pin'), 'top', 3000);
-            
-            // Подсказка открыть письмо (через 10 секунд, если конверт еще не открыт)
-            setTimeout(() => {
-                if (!isEnvelopeOpen) {
-                    createHint('Затем нажми на письмо, чтобы открыть приглашение', 'bottom', document.querySelector('.letter'), 'bottom');
-                }
-            }, 10000);
-        }
-        
-        // Показ подсказки про билет после открытия модального окна
-        function showTicketHint() {
-            // Подсказка про билет (через 5 секунд после открытия модального окна)
-            createHint('Не забудь распечатать билет на праздник!', 'top', document.querySelector('.ticket-btn'), 'top', 5000);
+
+            clearTimeout(tooltipTimeout);
+            tooltipTimeout = setTimeout(() => {
+                tooltip.style.opacity = '0';
+                setTimeout(() => {
+                    if (tooltip.parentNode) {
+                        tooltip.parentNode.removeChild(tooltip);
+                    }
+                }, 300);
+            }, 4000);
         }
 
         function openEnvelope() {
             if (!isEnvelopeOpen) {
                 envelopeWrapper.classList.add('open');
                 isEnvelopeOpen = true;
-                
-                // Убираем все подсказки
-                clearAllHints();
-                
-                // Показываем подсказку про письмо
-                createHint('Теперь нажми на письмо, чтобы открыть приглашение', 'bottom', document.querySelector('.letter'), 'bottom', 1000);
-                
-                // Воспроизводим музыку с обработкой promise
-                const playPromise = music.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise
-                        .then(() => {
-                            // Автовоспроизведение успешно началось
-                            pinMusicIcon.classList.replace('fa-music', 'fa-volume-up');
-                            isMusicPlaying = true;
 
-                            if (!soundWaves) {
-                                soundWaves = document.createElement('div');
-                                soundWaves.className = 'sound-waves';
-                                document.querySelector('.pin').appendChild(soundWaves);
-                            }
-                        })
-                        .catch(error => {
-                            console.log('Автовоспроизведение заблокировано. Для включения музыки нажмите на конверт.');
-                            // Показываем уведомление, что нужно взаимодействие
-                            pinMusicIcon.classList.add('fa-lock'); // Иконка замка вместо музыки
-                        });
+                music.play().catch(error => {
+                    console.log('Автовоспроизведение заблокировано.');
+                });
+                pinMusicIcon.classList.remove('fa-music');
+                pinMusicIcon.classList.add('fa-volume-up');
+                isMusicPlaying = true;
+
+                if (!soundWaves) {
+                    soundWaves = document.createElement('div');
+                    soundWaves.className = 'sound-waves';
+                    document.querySelector('.pin').appendChild(soundWaves);
                 }
             }
         }
 
         function openModal() {
             if (isEnvelopeOpen) {
-                modal.hidden = false;
+                document.getElementById('congratulationModal').style.display = 'flex';
                 document.body.style.overflow = 'hidden';
-                document.documentElement.style.overflow = 'hidden';
+                document.querySelector('.scroll-to-ticket').style.display = 'flex';
                 startCountdown();
-                
-                // Убираем все подсказки
-                clearAllHints();
-                
-                // Показываем подсказку про билет
-                showTicketHint();
-                
-                // Фокусируемся на модальном окне для доступности
-                modal.focus();
             }
         }
 
         function closeModal() {
-            modal.hidden = true;
-            document.body.style.overflow = '';
-            document.documentElement.style.overflow = '';
-            
-            // Убираем все подсказки
-            clearAllHints();
+            document.getElementById('congratulationModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            document.querySelector('.scroll-to-ticket').style.display = 'none';
         }
 
         function scrollToTicket() {
@@ -474,21 +1145,9 @@
 
         function createConfetti() {
             const colors = ['#f8d7da', '#d4a5a7', '#a76c6e', '#f8c6c9', '#f4b6ba'];
-            const confettiContainer = document.createElement('div');
-            confettiContainer.style.position = 'fixed';
-            confettiContainer.style.top = '0';
-            confettiContainer.style.left = '0';
-            confettiContainer.style.width = '100%';
-            confettiContainer.style.height = '100%';
-            confettiContainer.style.pointerEvents = 'none';
-            confettiContainer.style.zIndex = '10001'; // Поверх модального окна
-            
-            document.body.appendChild(confettiContainer);
-
             for (let i = 0; i < 100; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
-                confetti.style.position = 'absolute';
                 confetti.style.left = Math.random() * 100 + 'vw';
                 const randomColor = colors[Math.floor(Math.random() * colors.length)];
                 confetti.style.backgroundColor = randomColor;
@@ -497,12 +1156,14 @@
                 confetti.style.width = Math.random() * 15 + 5 + 'px';
                 confetti.style.height = Math.random() * 15 + 5 + 'px';
                 confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-                confettiContainer.appendChild(confetti);
-            }
+                document.body.appendChild(confetti);
 
-            setTimeout(() => {
-                document.body.removeChild(confettiContainer);
-            }, 5000);
+                setTimeout(() => {
+                    if (confetti.parentNode) {
+                        confetti.parentNode.removeChild(confetti);
+                    }
+                }, 5000);
+            }
         }
 
         function printTicket() {
@@ -511,12 +1172,13 @@
             const photoBooth = document.querySelector('.photo-booth');
 
             photoBooth.style.height = '280px';
-            ticket.hidden = false;
+
+            ticket.style.display = 'block';
             ticket.style.animation = 'printTicket 1.5s forwards';
 
             const printingTexts = document.querySelectorAll('.printing-text');
             printingTexts.forEach((text, index) => {
-                text.style.animation = `typing 0.5s ${index * 0.3}s forwards`;
+                text.style.animationDelay = `${index * 0.5}s`;
             });
 
             setTimeout(() => {
@@ -529,51 +1191,29 @@
 
             createConfetti();
 
-            // Создаем аудио элементы динамически для лучшей производительности
-            const playSound = (src) => {
-                const audio = new Audio();
-                audio.src = src;
-                audio.volume = 0.7;
-                const playPromise = audio.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise.catch(e => {
-                        console.log('Воспроизведение звука было заблокировано');
-                    });
-                }
-            };
+            const popSound = new Audio('pop.mp3');
+            popSound.play().catch(e => console.log('Аудио не может быть воспроизведено'));
 
-            playSound('pop.mp3');
-            setTimeout(() => playSound('print-sound.mp3'), 300);
-            
-            // Убираем все подсказки
-            clearAllHints();
+            const printSound = new Audio('print-sound.mp3');
+            printSound.play().catch(e => console.log('Аудио печати не может быть воспроизведено'));
         }
 
-        // Обработчики событий
-        window.addEventListener('click', function(event) {
-            if (event.target === modal) {
+        window.onclick = function (event) {
+            const modal = document.getElementById('congratulationModal');
+            if (event.target == modal) {
                 closeModal();
             }
-        });
+        }
 
-        document.addEventListener('keydown', function(event) {
+        document.addEventListener('keydown', function (event) {
             if (event.key === 'Escape') {
                 closeModal();
-            }
-            
-            // Space или Enter для открытия конверта при фокусе
-            if ((event.key === ' ' || event.key === 'Enter') && 
-                event.target.classList.contains('pin')) {
-                event.preventDefault();
-                openEnvelope();
             }
         });
 
         function startCountdown() {
-            const eventDate = new Date(new Date().getFullYear(), 7, 26, 15, 0, 0);
+            const eventDate = new Date(new Date().getFullYear(), 7, 26, 15, 0, 0); // Месяцы в JS: 0-январь, 7-август
 
-            // Если дата уже прошла в этом году, показываем следующую
             if (eventDate < new Date()) {
                 eventDate.setFullYear(eventDate.getFullYear() + 1);
             }
@@ -601,12 +1241,12 @@
                 document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
                 document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
 
-                requestAnimationFrame(updateCountdown);
+                setTimeout(updateCountdown, 1000);
             }
 
             updateCountdown();
         }
-        
+
         // Предотвращение масштабирования на мобильных устройствах при двойном тапе
         let lastTouchEnd = 0;
         document.addEventListener('touchend', function (event) {
@@ -616,26 +1256,6 @@
             }
             lastTouchEnd = now;
         }, false);
-        
-        // Инициализация при загрузке
-        document.addEventListener('DOMContentLoaded', function() {
-            // Предзагрузка важных ресурсов
-            const preloadResources = ['pop.mp3', 'print-sound.mp3'];
-            
-            preloadResources.forEach(resource => {
-                const link = document.createElement('link');
-                link.rel = 'preload';
-                link.href = resource;
-                link.as = 'audio';
-                document.head.appendChild(link);
-            });
-            
-            // Устанавливаем доступность для модального окна
-            modal.setAttribute('aria-hidden', 'true');
-            
-            // Показываем подсказки через некоторое время после загрузки
-            setTimeout(showHints, 1000);
-        });
     </script>
 </body>
 
